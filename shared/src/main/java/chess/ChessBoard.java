@@ -1,5 +1,8 @@
 package chess;
 
+import static chess.ChessPiece.PieceType.*;
+import static chess.ChessGame.TeamColor.*;
+
 /**
  * A chessboard that can hold and rearrange chess pieces.
  * <p>
@@ -8,6 +11,7 @@ package chess;
  */
 public class ChessBoard {
 
+    private ChessPiece[][] board = new ChessPiece[8][8];
     public ChessBoard() {
         
     }
@@ -19,7 +23,7 @@ public class ChessBoard {
      * @param piece    the piece to add
      */
     public void addPiece(ChessPosition position, ChessPiece piece) {
-        throw new RuntimeException("Not implemented");
+        board[position.getRow()][position.getColumn()] = piece;
     }
 
     /**
@@ -30,7 +34,7 @@ public class ChessBoard {
      * position
      */
     public ChessPiece getPiece(ChessPosition position) {
-        throw new RuntimeException("Not implemented");
+        return board[position.getRow()][position.getColumn()];
     }
 
     /**
@@ -38,6 +42,38 @@ public class ChessBoard {
      * (How the game of chess normally starts)
      */
     public void resetBoard() {
-        throw new RuntimeException("Not implemented");
+        board = new ChessPiece[8][8];
+        board[0][0] = new ChessPiece(BLACK,ROOK);
+        board[0][1] = new ChessPiece(BLACK,KNIGHT);
+        board[0][2] = new ChessPiece(BLACK,BISHOP);
+        board[0][3] = new ChessPiece(BLACK,KING);
+        board[0][4] = new ChessPiece(BLACK,QUEEN);
+        board[0][5] = new ChessPiece(BLACK,BISHOP);
+        board[0][6] = new ChessPiece(BLACK,KNIGHT);
+        board[0][7] = new ChessPiece(BLACK,ROOK);
+        board[1][0] = new ChessPiece(BLACK,PAWN);
+        board[1][1] = new ChessPiece(BLACK,PAWN);
+        board[1][2] = new ChessPiece(BLACK,PAWN);
+        board[1][3] = new ChessPiece(BLACK,PAWN);
+        board[1][4] = new ChessPiece(BLACK,PAWN);
+        board[1][5] = new ChessPiece(BLACK,PAWN);
+        board[1][6] = new ChessPiece(BLACK,PAWN);
+        board[1][7] = new ChessPiece(BLACK,PAWN);
+        board[6][0] = new ChessPiece(WHITE,PAWN);
+        board[6][1] = new ChessPiece(WHITE,PAWN);
+        board[6][2] = new ChessPiece(WHITE,PAWN);
+        board[6][3] = new ChessPiece(WHITE,PAWN);
+        board[6][4] = new ChessPiece(WHITE,PAWN);
+        board[6][5] = new ChessPiece(WHITE,PAWN);
+        board[6][6] = new ChessPiece(WHITE,PAWN);
+        board[6][7] = new ChessPiece(WHITE,PAWN);
+        board[7][0] = new ChessPiece(WHITE,ROOK);
+        board[7][1] = new ChessPiece(WHITE,KNIGHT);
+        board[7][2] = new ChessPiece(WHITE,BISHOP);
+        board[7][3] = new ChessPiece(WHITE,KING);
+        board[7][4] = new ChessPiece(WHITE,QUEEN);
+        board[7][5] = new ChessPiece(WHITE,BISHOP);
+        board[7][6] = new ChessPiece(WHITE,KNIGHT);
+        board[7][7] = new ChessPiece(WHITE,ROOK);
     }
 }
