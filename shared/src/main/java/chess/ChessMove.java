@@ -1,6 +1,6 @@
 package chess;
 
-/**
+import java.util.Objects; /**
  * Represents moving a chess piece on a chessboard
  * <p>
  * Note: You can add to this class, but you may not alter
@@ -40,5 +40,17 @@ public class ChessMove {
      */
     public ChessPiece.PieceType getPromotionPiece() {
         return promPiece;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ChessMove chessMove)) return false;
+        return Objects.equals(beginPos, chessMove.beginPos) && Objects.equals(endPos, chessMove.endPos) && promPiece == chessMove.promPiece;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(beginPos, endPos, promPiece);
     }
 }
