@@ -45,12 +45,22 @@ public class ChessMove {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ChessMove chessMove)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
+        ChessMove chessMove = (ChessMove) o;
         return Objects.equals(beginPos, chessMove.beginPos) && Objects.equals(endPos, chessMove.endPos) && promPiece == chessMove.promPiece;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(beginPos, endPos, promPiece);
+    }
+
+    @Override
+    public String toString() {
+        return "ChessMove{" +
+                "beginPos=" + beginPos +
+                ", endPos=" + endPos +
+                ", promPiece=" + promPiece +
+                '}';
     }
 }
