@@ -13,8 +13,8 @@ public class ChessPosition {
     private int rowData;
     private int colData;
     public ChessPosition(int row, int col) {
-        rowData = row;
-        colData = col;
+        rowData = row -1;
+        colData = col -1;
     }
 
     /**
