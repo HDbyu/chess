@@ -64,6 +64,10 @@ public class ChessPiece {
             KnightMove posMoves = new KnightMove();
             return posMoves.CheckMove(board, myPosition);
         }
+        if (PieceType.PAWN == board.getPiece(myPosition).unitType) {
+            PawnMove posMoves = new PawnMove();
+            return posMoves.CheckMove(board, myPosition);
+        }
         return null;
     }
 
