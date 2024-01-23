@@ -8,79 +8,28 @@ public class BishopMove{
     }
     public Collection<ChessMove> CheckMove(ChessBoard board, ChessPosition beginPos) {
         Set<ChessMove> moves = new HashSet<ChessMove>();
-        boolean proceed = true;
-        ChessPosition current;
-        current = beginPos;
-        while (proceed) {
-            if (current.getRow() > 0 && current.getColumn() > 0) {
-                current = new ChessPosition(current.getRow() -1,current.getColumn() -1);
-                if (board.getPiece(current) == null) {
-                    moves.add(new ChessMove(beginPos,current,null));
-                }
-                else if (board.getPiece(current).getTeamColor() != board.getPiece(beginPos).getTeamColor()) {
-                    proceed = false;
-                    moves.add(new ChessMove(beginPos,current,null));
-                }
-                else {
-                    proceed = false;
-                }
-            } else proceed = false;
-        }
-        proceed = true;
-        current = beginPos;
-        while (proceed) {
-            if (current.getRow() > 0 && current.getColumn() < 7) {
-                current = new ChessPosition(current.getRow() -1,current.getColumn() +1);
-                if (board.getPiece(current) == null) {
-                    moves.add(new ChessMove(beginPos,current,null));
-                }
-                else if (board.getPiece(current).getTeamColor() != board.getPiece(beginPos).getTeamColor()) {
-                    proceed = false;
-                    moves.add(new ChessMove(beginPos,current,null));
-                }
-                else {
-                    proceed = false;
-                }
-            }
-            else proceed = false;
-        }
-        proceed = true;
-        current = beginPos;
-        while (proceed) {
-            if (current.getRow() < 7 && current.getColumn() > 0) {
-                current = new ChessPosition(current.getRow() +1,current.getColumn() -1);
-                if (board.getPiece(current) == null) {
-                    moves.add(new ChessMove(beginPos,current,null));
-                }
-                else if (board.getPiece(current).getTeamColor() != board.getPiece(beginPos).getTeamColor()) {
-                    proceed = false;
-                    moves.add(new ChessMove(beginPos,current,null));
-                }
-                else {
-                    proceed = false;
-                }
-            }
-            else proceed = false;
-        }
-        proceed = true;
-        current = beginPos;
-        while (proceed) {
-            if (current.getRow() < 7 && current.getColumn() < 7) {
-                current = new ChessPosition(current.getRow() +1,current.getColumn() +1);
-                if (board.getPiece(current) == null) {
-                    moves.add(new ChessMove(beginPos,current,null));
-                }
-                else if (board.getPiece(current).getTeamColor() != board.getPiece(beginPos).getTeamColor()) {
-                    proceed = false;
-                    moves.add(new ChessMove(beginPos,current,null));
-                }
-                else {
-                    proceed = false;
-                }
-            }
-            else proceed = false;
-        }
+        movesIterate(moves, beginPos, board, -1,-1);
+        movesIterate(moves, beginPos, board, 1,-1);
+        movesIterate(moves, beginPos, board, -1,1);
+        movesIterate(moves, beginPos, board, 1,1);
         return moves;
+    }
+
+    private void movesIterate(Set<ChessMove> moves, ChessPosition first, ChessBoard board, int rowDir, int colDir) {
+        ChessPosition current;
+        current = first;
+        current = new ChessPosition(current.getRow() + rowDir, current.getColumn() + colDir);
+        while (current.getRow() >= 1 && current.getColumn() >= 1 && current.getRow() <= 8 && current.getColumn() <= 8) {
+            if (board.getPiece(current) == null) {
+                moves.add(new ChessMove(first, current, null));
+            } else if (!board.getPiece(current).getTeamColor().equals(board.getPiece(first).getTeamColor())) {
+                moves.add(new ChessMove(first, current, null));
+                break;
+            } else {
+                break;
+            }
+            current = new ChessPosition(current.getRow() + rowDir, current.getColumn() + colDir);
+        }
     }
 
     @Override
