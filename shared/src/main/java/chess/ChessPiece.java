@@ -68,6 +68,10 @@ public class ChessPiece {
             PawnMove posMoves = new PawnMove();
             return posMoves.CheckMove(board, myPosition);
         }
+        if (PieceType.ROOK == board.getPiece(myPosition).unitType) {
+            RookMove posMoves = new RookMove();
+            return posMoves.CheckMove(board, myPosition);
+        }
         return null;
     }
 
