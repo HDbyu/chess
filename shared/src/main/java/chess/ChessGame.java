@@ -11,7 +11,7 @@ import java.util.Objects;
  */
 public class ChessGame {
 
-    TeamColor color;
+    TeamColor turn;
     ChessBoard myBoard;
     public ChessGame() {
 
@@ -21,7 +21,7 @@ public class ChessGame {
      * @return Which team's turn it is
      */
     public TeamColor getTeamTurn() {
-        return color;
+        return turn;
     }
 
     /**
@@ -30,7 +30,7 @@ public class ChessGame {
      * @param team the team whose turn it is
      */
     public void setTeamTurn(TeamColor team) {
-        color = team;
+        turn = team;
     }
 
     /**
@@ -60,7 +60,7 @@ public class ChessGame {
      */
     public void makeMove(ChessMove move) throws InvalidMoveException {
         Collection<ChessMove> moves = validMoves(move.getStartPosition());
-        if (moves.contains(move)) {
+        if (moves.contains(move) && myBoard.getPiece(move.getStartPosition()).getTeamColor() == turn) {
             myBoard.addPiece(move.getEndPosition(), myBoard.getPiece(move.getStartPosition()));
             myBoard.addPiece(move.getStartPosition(),null);
         }
@@ -121,18 +121,18 @@ public class ChessGame {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ChessGame chessGame = (ChessGame) o;
-        return color == chessGame.color && Objects.equals(myBoard, chessGame.myBoard);
+        return turn == chessGame.turn && Objects.equals(myBoard, chessGame.myBoard);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(color, myBoard);
+        return Objects.hash(turn, myBoard);
     }
 
     @Override
     public String toString() {
         return "ChessGame{" +
-                "color=" + color +
+                "color=" + turn +
                 ", myBoard=" + myBoard +
                 '}';
     }
