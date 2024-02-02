@@ -49,11 +49,36 @@ public class ChessGame {
      * startPosition
      */
     public Collection<ChessMove> validMoves(ChessPosition startPosition) {
-        return myBoard.getPiece(startPosition).pieceMoves(myBoard, startPosition);
+        Collection<ChessMove> moves = myBoard.getPiece(startPosition).pieceMoves(myBoard, startPosition);
+        ReduceMoves(myBoard, moves);
+        return moves;
+    }
+
+    private void ReduceMoves(ChessBoard board, Collection<ChessMove> moves) {
+        boolean changeMade = true;
+        while (changeMade) {
+            changeMade = false;
+            for (ChessMove obj : moves) {
+                ChessBoard testBoard = board;
+                testBoard.addPiece(obj.getEndPosition(), testBoard.getPiece(obj.getStartPosition()));
+                testBoard.addPiece(obj.getStartPosition(), null);
+                if (isInCheck(testBoard.getPiece(obj.getEndPosition()).getTeamColor())) {
+                    testBoard.addPiece(obj.getStartPosition(), testBoard.getPiece(obj.getEndPosition()));
+                    testBoard.addPiece(obj.getEndPosition(), null);
+                    moves.remove(obj);
+                    changeMade = true;
+                    break;
+                } else {
+                    testBoard.addPiece(obj.getStartPosition(), testBoard.getPiece(obj.getEndPosition()));
+                    testBoard.addPiece(obj.getEndPosition(), null);
+                }
+            }
+        }
     }
 
     /**
-     * Makes a move in a chess game
+     * Makes a move
+     * in a chess game
      *
      * @param move chess move to preform
      * @throws InvalidMoveException if move is invalid
@@ -78,7 +103,6 @@ public class ChessGame {
         int kingCol = 0;
         for (int i = 1; i <= 8; i++) {
             for (int j = 1; j <= 8; j++) {
-
                 if (myBoard.getPiece(new ChessPosition(i,j)) != null &&
                     myBoard.getPiece(new ChessPosition(i,j)).getTeamColor() == teamColor &&
                     myBoard.getPiece(new ChessPosition(i,j)).getPieceType() == ChessPiece.PieceType.KING) {
