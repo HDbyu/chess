@@ -13,6 +13,7 @@ public class ChessGame {
 
     TeamColor turn;
     ChessBoard myBoard;
+    ChessBoard safeBoard = new ChessBoard();
     public ChessGame() {
 
     }
@@ -56,21 +57,36 @@ public class ChessGame {
 
     private void ReduceMoves(ChessBoard board, Collection<ChessMove> moves) {
         boolean changeMade = true;
+        saveBoard();
         while (changeMade) {
             changeMade = false;
             for (ChessMove obj : moves) {
-                ChessBoard testBoard = board;
-                testBoard.addPiece(obj.getEndPosition(), testBoard.getPiece(obj.getStartPosition()));
-                testBoard.addPiece(obj.getStartPosition(), null);
-                if (isInCheck(testBoard.getPiece(obj.getEndPosition()).getTeamColor())) {
-                    testBoard.addPiece(obj.getStartPosition(), testBoard.getPiece(obj.getEndPosition()));
-                    testBoard.addPiece(obj.getEndPosition(), null);
+                recallBoard();
+                board.addPiece(obj.getEndPosition(), board.getPiece(obj.getStartPosition()));
+                board.addPiece(obj.getStartPosition(), null);
+                if (isInCheck(board.getPiece(obj.getEndPosition()).getTeamColor())) {
                     moves.remove(obj);
                     changeMade = true;
                     break;
-                } else {
-                    testBoard.addPiece(obj.getStartPosition(), testBoard.getPiece(obj.getEndPosition()));
-                    testBoard.addPiece(obj.getEndPosition(), null);
+                }
+            }
+        }
+    }
+
+    private void saveBoard() {
+        for (int i = 1; i <= 8; i++) {
+            for (int j = 1; j <= 8; j++) {
+                if (myBoard.getPiece(new ChessPosition(i,j)) != null) {
+                    safeBoard.addPiece(new ChessPosition(i, j), myBoard.getPiece(new ChessPosition(i, j)));
+                }
+            }
+        }
+    }
+    private void recallBoard() {
+        for (int i = 1; i <= 8; i++) {
+            for (int j = 1; j <= 8; j++) {
+                if (safeBoard.getPiece(new ChessPosition(i,j)) != null) {
+                    myBoard.addPiece(new ChessPosition(i, j), safeBoard.getPiece(new ChessPosition(i, j)));
                 }
             }
         }
