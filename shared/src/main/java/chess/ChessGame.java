@@ -51,26 +51,27 @@ public class ChessGame {
      */
     public Collection<ChessMove> validMoves(ChessPosition startPosition) {
         Collection<ChessMove> moves = myBoard.getPiece(startPosition).pieceMoves(myBoard, startPosition);
-        ReduceMoves(myBoard, moves);
+        moves = ReduceMoves(moves);
         return moves;
     }
 
-    private void ReduceMoves(ChessBoard board, Collection<ChessMove> moves) {
+    private Collection<ChessMove> ReduceMoves(Collection<ChessMove> moves) {
         boolean changeMade = true;
         saveBoard();
         while (changeMade) {
             changeMade = false;
             for (ChessMove obj : moves) {
                 recallBoard();
-                board.addPiece(obj.getEndPosition(), board.getPiece(obj.getStartPosition()));
-                board.addPiece(obj.getStartPosition(), null);
-                if (isInCheck(board.getPiece(obj.getEndPosition()).getTeamColor())) {
+                myBoard.addPiece(obj.getEndPosition(), myBoard.getPiece(obj.getStartPosition()));
+                myBoard.addPiece(obj.getStartPosition(), null);
+                if (isInCheck(myBoard.getPiece(obj.getEndPosition()).getTeamColor())) {
                     moves.remove(obj);
                     changeMade = true;
                     break;
                 }
             }
         }
+        return moves;
     }
 
     private void saveBoard() {
@@ -87,6 +88,9 @@ public class ChessGame {
             for (int j = 1; j <= 8; j++) {
                 if (safeBoard.getPiece(new ChessPosition(i,j)) != null) {
                     myBoard.addPiece(new ChessPosition(i, j), safeBoard.getPiece(new ChessPosition(i, j)));
+                }
+                else if (myBoard.getPiece(new ChessPosition(i,j)) != null) {
+                    myBoard.addPiece(new ChessPosition(i,j), null);
                 }
             }
         }
