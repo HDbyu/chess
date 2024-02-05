@@ -71,6 +71,7 @@ public class ChessGame {
                 }
             }
         }
+        recallBoard();
         return moves;
     }
 
@@ -79,6 +80,9 @@ public class ChessGame {
             for (int j = 1; j <= 8; j++) {
                 if (myBoard.getPiece(new ChessPosition(i,j)) != null) {
                     safeBoard.addPiece(new ChessPosition(i, j), myBoard.getPiece(new ChessPosition(i, j)));
+                }
+                else if (safeBoard.getPiece(new ChessPosition(i,j)) != null) {
+                    safeBoard.addPiece(new ChessPosition(i,j), null);
                 }
             }
         }
