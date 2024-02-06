@@ -113,6 +113,9 @@ public class ChessGame {
             myBoard.addPiece(move.getEndPosition(), myBoard.getPiece(move.getStartPosition()));
             myBoard.addPiece(move.getStartPosition(),null);
             turn = turn == TeamColor.WHITE? TeamColor.BLACK:TeamColor.WHITE;
+            if (move.getPromotionPiece() != null) {
+                myBoard.addPiece(move.getEndPosition(), new ChessPiece(myBoard.getPiece(move.getEndPosition()).getTeamColor(), move.getPromotionPiece()));
+            }
         }
         else throw new InvalidMoveException();
     }
