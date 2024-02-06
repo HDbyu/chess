@@ -1,6 +1,7 @@
 package chess;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
 
 /**
@@ -144,7 +145,11 @@ public class ChessGame {
                 if (myBoard.getPiece(new ChessPosition(i,j)) != null &&
                         myBoard.getPiece(new ChessPosition(i,j)).getTeamColor() != teamColor) {
                     Collection<ChessMove> checkMoves = myBoard.getPiece(new ChessPosition(i,j)).pieceMoves(myBoard,new ChessPosition(i,j));
-                    if (checkMoves.contains(new ChessMove(new ChessPosition(i,j), new ChessPosition(kingRow,kingCol), null))) {
+                    if (checkMoves.contains(new ChessMove(new ChessPosition(i,j), new ChessPosition(kingRow,kingCol), null)) ||
+                            checkMoves.contains(new ChessMove(new ChessPosition(i,j), new ChessPosition(kingRow,kingCol), ChessPiece.PieceType.QUEEN)) ||
+                            checkMoves.contains(new ChessMove(new ChessPosition(i,j), new ChessPosition(kingRow,kingCol), ChessPiece.PieceType.BISHOP)) ||
+                            checkMoves.contains(new ChessMove(new ChessPosition(i,j), new ChessPosition(kingRow,kingCol), ChessPiece.PieceType.ROOK)) ||
+                            checkMoves.contains(new ChessMove(new ChessPosition(i,j), new ChessPosition(kingRow,kingCol), ChessPiece.PieceType.KNIGHT))) {
                         return true;
                     }
                 }
@@ -160,7 +165,24 @@ public class ChessGame {
      * @return True if the specified team is in checkmate
      */
     public boolean isInCheckmate(TeamColor teamColor) {
-        throw new RuntimeException("Not implemented");
+        if (isInCheck(teamColor)) {
+            Collection<ChessMove> posMove = new HashSet<>();
+            for (int i = 1; i <= 8; i++) {
+                for (int j = 1; j <= 8; j++) {
+                    if (myBoard.getPiece(new ChessPosition(i,j)) != null &&
+                            myBoard.getPiece(new ChessPosition(i,j)).getTeamColor() == teamColor) {
+                        posMove.addAll(validMoves(new ChessPosition(i,j)));
+                        if (!posMove.isEmpty()) {
+                            return false;
+                        }
+                    }
+                }
+            }
+            if (posMove.isEmpty()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
