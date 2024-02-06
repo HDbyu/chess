@@ -112,6 +112,7 @@ public class ChessGame {
         if (moves.contains(move) && myBoard.getPiece(move.getStartPosition()).getTeamColor() == turn) {
             myBoard.addPiece(move.getEndPosition(), myBoard.getPiece(move.getStartPosition()));
             myBoard.addPiece(move.getStartPosition(),null);
+            turn = turn == TeamColor.WHITE? TeamColor.BLACK:TeamColor.WHITE;
         }
         else throw new InvalidMoveException();
     }
