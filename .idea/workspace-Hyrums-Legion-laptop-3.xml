@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="fix(shared) maven resource reference" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2ZdeZEoo0WsXUuIH3zHpGaPMMFj" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.BishopMoveTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessBoardTests.defaultGameBoard.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ChessBoardTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessBoardTests.getAddPiece.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ChessGameTests$ValidMoveTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessGameTests$ValidMoveTests.kingInDanger.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ChessGameTests$ValidMoveTests.moveIntoCheck.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ChessGameTests.blackTeamPawnCheckmate.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ChessGameTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessGameTests.makeValidMoves.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ChessGameTests.whiteCheck.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ChessMoveTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChessPositionTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.KingMoveTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.KnightMoveTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PawnMoveTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PawnMoveTests.pawnMiddleOfBoardWhite.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.QueenMoveTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RookMoveTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.passoffTests in shared.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Hyrum/OneDrive/Documents/CS240/chess/server/src/main/java/server&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.34252873&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Hyrum\OneDrive\Documents\CS240\chess\server\src\main\java\server" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="server" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ChessGameTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shared" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.chessTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.chessTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.ChessGameTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ChessGameTests.blackTeamPawnCheckmate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shared" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.chessTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.chessTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.ChessGameTests" />
+      <option name="METHOD_NAME" value="blackTeamPawnCheckmate" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ChessGameTests.makeValidMoves" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shared" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.chessTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.chessTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.ChessGameTests" />
+      <option name="METHOD_NAME" value="makeValidMoves" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StandardAPITests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.StandardAPITests" />
+        <item itemvalue="JUnit.ChessGameTests" />
+        <item itemvalue="JUnit.ChessGameTests.blackTeamPawnCheckmate" />
+        <item itemvalue="JUnit.ChessGameTests.makeValidMoves" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.2-openjdk-21.0.2-f644763e9732-c0c073db" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="" />
+      <created>1702756436549</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1702756436549</updated>
+      <workItem from="1705385185868" duration="204000" />
+      <workItem from="1705385395736" duration="172000" />
+      <workItem from="1705423223433" duration="767000" />
+      <workItem from="1705546210387" duration="284000" />
+      <workItem from="1705546896795" duration="79000" />
+      <workItem from="1705547001625" duration="93000" />
+      <workItem from="1705547129970" duration="111000" />
+      <workItem from="1705547299002" duration="2108000" />
+      <workItem from="1705550240445" duration="607000" />
+      <workItem from="1705595771681" duration="911000" />
+      <workItem from="1705636702180" duration="918000" />
+      <workItem from="1705728174275" duration="5923000" />
+      <workItem from="1705901211508" duration="523000" />
+      <workItem from="1705948354749" duration="397000" />
+      <workItem from="1705948789773" duration="2863000" />
+      <workItem from="1705957917588" duration="1817000" />
+      <workItem from="1705981920609" duration="8589000" />
+      <workItem from="1706027166468" duration="6342000" />
+      <workItem from="1706034974593" duration="4542000" />
+      <workItem from="1706202668402" duration="2729000" />
+      <workItem from="1706209275022" duration="56000" />
+      <workItem from="1706252093461" duration="745000" />
+      <workItem from="1706583577845" duration="3781000" />
+      <workItem from="1706640703480" duration="2771000" />
+      <workItem from="1706648180959" duration="1015000" />
+      <workItem from="1706757848183" duration="6686000" />
+      <workItem from="1706805026318" duration="1528000" />
+      <workItem from="1706844070674" duration="7968000" />
+      <workItem from="1706930436087" duration="2296000" />
+      <workItem from="1706934433766" duration="89000" />
+      <workItem from="1707166711339" duration="4349000" />
+      <workItem from="1707181980244" duration="2534000" />
+      <workItem from="1708117296836" duration="2463000" />
+      <workItem from="1708119786701" duration="663000" />
+      <workItem from="1708207833100" duration="741000" />
+      <workItem from="1708462767696" duration="1126000" />
+      <workItem from="1708619271211" duration="1125000" />
+    </task>
+    <task id="LOCAL-00001" summary="add(client) dependency on server for running tests.">
+      <option name="closed" value="true" />
+      <created>1703044500221</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1703044500221</updated>
+    </task>
+    <task id="LOCAL-00002" summary="fix(shared) maven resource reference">
+      <option name="closed" value="true" />
+      <created>1703046815883</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1703046815883</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add(client) dependency on server for running tests." />
+    <MESSAGE value="fix(shared) maven resource reference" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(shared) maven resource reference" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/shared/src/test/java/passoffTests/chessTests/ChessGameTests.java</url>
+          <line>682</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/shared/src/test/java/passoffTests/chessTests/ChessGameTests.java</url>
+          <line>734</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

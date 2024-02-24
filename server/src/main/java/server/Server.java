@@ -1,9 +1,13 @@
 package server;
 
+import dataAccess.MemoryData;
 import spark.*;
+
+import java.util.UUID;
 
 public class Server {
 
+    private MemoryData Data;
     public int run(int desiredPort) {
         Spark.port(desiredPort);
 
@@ -21,3 +25,4 @@ public class Server {
         Spark.awaitStop();
     }
 }
+//UUID
