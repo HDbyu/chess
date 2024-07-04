@@ -12,11 +12,12 @@ import java.util.Objects;
  */
 public class ChessGame {
 
-    TeamColor turn;
-    ChessBoard myBoard;
+    TeamColor turn = TeamColor.WHITE;
+    ChessBoard myBoard = new ChessBoard();
     ChessBoard safeBoard = new ChessBoard();
-    public ChessGame() {
 
+    public ChessGame() {
+        myBoard.resetBoard();
     }
 
     /**
@@ -165,24 +166,7 @@ public class ChessGame {
      * @return True if the specified team is in checkmate
      */
     public boolean isInCheckmate(TeamColor teamColor) {
-        if (isInCheck(teamColor)) {
-            Collection<ChessMove> posMove = new HashSet<>();
-            for (int i = 1; i <= 8; i++) {
-                for (int j = 1; j <= 8; j++) {
-                    if (myBoard.getPiece(new ChessPosition(i,j)) != null &&
-                            myBoard.getPiece(new ChessPosition(i,j)).getTeamColor() == teamColor) {
-                        posMove.addAll(validMoves(new ChessPosition(i,j)));
-                        if (!posMove.isEmpty()) {
-                            return false;
-                        }
-                    }
-                }
-            }
-            if (posMove.isEmpty()) {
-                return true;
-            }
-        }
-        return false;
+        return isInCheck(teamColor) && iteratePieces(teamColor);
     }
 
     /**
@@ -193,6 +177,10 @@ public class ChessGame {
      * @return True if the specified team is in stalemate, otherwise false
      */
     public boolean isInStalemate(TeamColor teamColor) {
+        return !isInCheck(teamColor) && iteratePieces(teamColor);
+    }
+
+    private boolean iteratePieces(TeamColor teamColor) {
         Collection<ChessMove> posMove = new HashSet<>();
         for (int i = 1; i <= 8; i++) {
             for (int j = 1; j <= 8; j++) {
@@ -205,10 +193,7 @@ public class ChessGame {
                 }
             }
         }
-        if (posMove.isEmpty()) {
-            return true;
-        }
-        return false;
+        return posMove.isEmpty();
     }
 
     /**
