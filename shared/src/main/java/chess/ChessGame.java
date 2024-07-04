@@ -52,6 +52,9 @@ public class ChessGame {
      * startPosition
      */
     public Collection<ChessMove> validMoves(ChessPosition startPosition) {
+        if (myBoard.getPiece(startPosition) == null) {
+            return new HashSet<>();
+        }
         Collection<ChessMove> moves = myBoard.getPiece(startPosition).pieceMoves(myBoard, startPosition);
         moves = ReduceMoves(moves);
         return moves;
