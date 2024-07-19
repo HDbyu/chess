@@ -1,28 +1,12 @@
 package dataaccess;
 
+import model.UserData;
 
-import model.*;
+interface UserDAO {
+    void createUser(UserData u) throws DataAccessException;
 
-import java.util.HashMap;
-import java.util.HashSet;
+    UserData getUser(String u) throws DataAccessException;
 
-public class UserDAO implements UserDAOInterface {
-    private HashMap<String, UserData> users = new HashMap<>();
-
-    public UserDAO() {
-
-    }
-
-    public void createUser(UserData u) throws DataAccessException {
-        users.put(u.username(), u);
-    }
-
-    public UserData getUser(String u) throws DataAccessException {
-        return users.get(u);
-    }
-
-    public void clear() throws DataAccessException {
-        users.clear();
-    }
+    void clear() throws DataAccessException;
 
 }
