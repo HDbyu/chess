@@ -11,8 +11,8 @@ import requestresult.RegisterResult;
 import java.util.UUID;
 
 public class RegisterService {
-    MemoryUserDAO userDAO;
-    MemoryAuthDAO authDAO;
+    private MemoryUserDAO userDAO;
+    private MemoryAuthDAO authDAO;
 
     public RegisterService(MemoryAuthDAO authDAO, MemoryUserDAO userDAO) {
         this.authDAO = authDAO;
