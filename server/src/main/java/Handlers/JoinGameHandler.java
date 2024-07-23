@@ -19,7 +19,7 @@ public class JoinGameHandler implements Route{
     public Object handle(Request request, Response response) throws Exception {
         var gson = new Gson();
         JoinGameRequest temp = gson.fromJson(request.body(), JoinGameRequest.class);
-        String token = gson.fromJson(request.headers("authorization"), JoinGameRequest.class).authorization();
+        String token = request.headers("authorization");
         JoinGameRequest req = new JoinGameRequest(temp.playerColor(), temp.gameID(), token);
         JoinGameService service = new JoinGameService(gameDAO, authDAO);
         JoinGameResult result = service.joinGame(req);

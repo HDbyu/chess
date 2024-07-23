@@ -20,7 +20,7 @@ public class RegisterService {
     }
 
     public RegisterResult register(RegisterRequest request) {
-        if (request.username().isEmpty() || request.password().isEmpty() || request.email().isEmpty()) {
+        if (request.username() == null || request.password() == null || request.email() == null) {
             return new RegisterResult(null, null, "Error: bad request");
         }
         UserData user = null;

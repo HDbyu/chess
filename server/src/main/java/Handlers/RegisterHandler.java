@@ -29,7 +29,7 @@ public class RegisterHandler implements Route {
         if (result.message() == null) {
             response.status(200);
         } else if (result.message().equals("Error: bad request")) {
-            response.status(403);
+            response.status(400);
         } else if (result.message().equals("Error: already taken")) {
             response.status(403);
         } else response.status(500);

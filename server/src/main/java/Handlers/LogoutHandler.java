@@ -19,7 +19,7 @@ public class LogoutHandler implements Route {
     @Override
     public Object handle(Request request, Response response) throws Exception {
         var gson = new Gson();
-        LogoutRequest req = gson.fromJson(request.headers("authorization"), LogoutRequest.class);
+        LogoutRequest req = new LogoutRequest(request.headers("authorization"));
         LogoutService service = new LogoutService(authDAO);
         LogoutResult result = service.logout(req);
         if (result.message() == null) {

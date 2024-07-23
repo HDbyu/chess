@@ -19,7 +19,7 @@ public class CreateGameHandler implements Route{
     public Object handle(Request request, Response response) throws Exception {
         var gson = new Gson();
         String name = gson.fromJson(request.body(), CreateGameRequest.class).gameName();
-        String token = gson.fromJson(request.headers("authorization"), CreateGameRequest.class).authorization();
+        String token = request.headers("authorization");
         CreateGameRequest req = new CreateGameRequest(name, token);
         CreateGameService service = new CreateGameService(gameDAO, authDAO);
         CreateGameResult result = service.createGame(req);

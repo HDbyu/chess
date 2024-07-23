@@ -25,7 +25,7 @@ public class LoginService {
         try {
             user = userDAO.getUser(request.username());
 
-            if(user.password().equals(request.password())) {
+            if(user != null && user.password().equals(request.password())) {
                 authToken = UUID.randomUUID().toString();
                 authDAO.createAuth(new AuthData(authToken, request.username()));
             } else return new LoginResult(null, null, "Error: unauthorized");
