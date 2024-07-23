@@ -22,11 +22,10 @@ public class ClearHandler implements Route{
         var gson = new Gson();
         ClearService service = new ClearService(gameDAO, authDAO, userDAO);
         ClearResult result = service.clear();
-        if (result.message().equals("Error: database error")) {
-            response.status(500);
-        } else {
+        if (result.message() == null) {
             response.status(200);
-            return "{}";
+        } else {
+            response.status(500);
         }
         return gson.toJson(result);
     }

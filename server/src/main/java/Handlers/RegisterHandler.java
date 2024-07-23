@@ -26,13 +26,13 @@ public class RegisterHandler implements Route {
         RegisterRequest req = gson.fromJson(request.body(), RegisterRequest.class);
         RegisterService service = new RegisterService(authDAO, userDAO);
         RegisterResult result = service.register(req);
-        if (result.message().equals("Error: bad request")) {
-            response.status(400);
+        if (result.message() == null) {
+            response.status(200);
+        } else if (result.message().equals("Error: bad request")) {
+            response.status(403);
         } else if (result.message().equals("Error: already taken")) {
             response.status(403);
-        } else if (result.message().equals("Error: database error")) {
-            response.status(500);
-        } else response.status(200);
+        } else response.status(500);
         return gson.toJson(result);
     }
 }

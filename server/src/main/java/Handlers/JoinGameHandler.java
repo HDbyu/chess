@@ -23,18 +23,15 @@ public class JoinGameHandler implements Route{
         JoinGameRequest req = new JoinGameRequest(temp.playerColor(), temp.gameID(), token);
         JoinGameService service = new JoinGameService(gameDAO, authDAO);
         JoinGameResult result = service.joinGame(req);
-        if (result.message().equals("Error: bad request")) {
+        if (result.message() == null) {
+            response.status(200);
+        } else if (result.message().equals("Error: bad request")) {
             response.status(400);
         } else if (result.message().equals("Error: unauthorized")) {
             response.status(401);
         } else if (result.message().equals("Error: already taken")) {
             response.status(403);
-        } else if (result.message().equals("Error: database error")) {
-            response.status(500);
-        } else response.status(200);
-        if (result.message() == null) {
-            return "{}";
-        }
+        } else response.status(500);
         return gson.toJson(result);
     }
 }

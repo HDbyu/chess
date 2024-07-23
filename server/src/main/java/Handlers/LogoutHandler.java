@@ -22,14 +22,11 @@ public class LogoutHandler implements Route {
         LogoutRequest req = gson.fromJson(request.headers("authorization"), LogoutRequest.class);
         LogoutService service = new LogoutService(authDAO);
         LogoutResult result = service.logout(req);
-        if (result.message().equals("Error: unauthorized")) {
+        if (result.message() == null) {
+            response.status(200);
+        } else if (result.message().equals("Error: unauthorized")) {
             response.status(401);
-        } else if (result.message().equals("Error: database error")) {
-            response.status(500);
-        } else response.status(200);
-        if(result.message() == null) {
-            return "{}";
-        }
+        } else response.status(500);
         return gson.toJson(result);
     }
 }

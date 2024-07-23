@@ -23,11 +23,11 @@ public class ListGamesHandler implements Route {
         ListGamesRequest req = gson.fromJson(request.headers("authorization"), ListGamesRequest.class);
         ListGamesService service = new ListGamesService(gameDAO, authDAO);
         ListGamesResult result = service.listGames(req);
-        if (result.message().equals("Error: unauthorized")) {
+        if (result.message() == null) {
+            response.status(200);
+        } else if (result.message().equals("Error: unauthorized")) {
             response.status(401);
-        } else if (result.message().equals("Error: database error")) {
-            response.status(500);
-        } else response.status(200);
+        } else response.status(500);
         return gson.toJson(result);
     }
 }

@@ -23,13 +23,13 @@ public class CreateGameHandler implements Route{
         CreateGameRequest req = new CreateGameRequest(name, token);
         CreateGameService service = new CreateGameService(gameDAO, authDAO);
         CreateGameResult result = service.createGame(req);
-        if (result.message().equals("Error: bad request")) {
+        if (result.message() == null) {
+            response.status(200);
+        } else if (result.message().equals("Error: bad request")) {
             response.status(400);
         } else if (result.message().equals("Error: unauthorized")) {
             response.status(401);
-        } else if (result.message().equals("Error: database error")) {
-            response.status(500);
-        } else response.status(200);
+        } else response.status(500);
         return gson.toJson(result);
     }
 }

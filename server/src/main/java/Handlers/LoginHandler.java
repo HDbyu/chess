@@ -24,11 +24,11 @@ public class LoginHandler implements Route {
         LoginRequest req = gson.fromJson(request.body(), LoginRequest.class);
         LoginService service = new LoginService(authDAO, userDAO);
         LoginResult result = service.login(req);
-        if (result.message().equals("Error: unauthorized")) {
+        if (result.message() == null) {
+            response.status(200);
+        } else if (result.message().equals("Error: unauthorized")) {
             response.status(401);
-        } else if (result.message().equals("Error: database error")) {
-            response.status(500);
-        } else response.status(200);
+        } else response.status(500);
         return gson.toJson(result);
     }
 }
