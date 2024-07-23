@@ -16,7 +16,7 @@ public class JoinGameService {
         this.authDAO = authDAO;
     }
 
-    public JoinGameResult createGame(JoinGameRequest request) {
+    public JoinGameResult joinGame(JoinGameRequest request) {
         if (request.playerColor() == null || request.gameID() == null) {
             return new JoinGameResult("Error: bad request");
         }
