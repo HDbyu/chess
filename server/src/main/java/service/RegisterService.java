@@ -22,6 +22,9 @@ public class RegisterService {
     }
 
     public RegisterResult register(RegisterRequest request) {
+        if (request.username().isEmpty() || request.password().isEmpty() || request.email().isEmpty()) {
+            return new RegisterResult(null, null, "Error: bad request");
+        }
         UserData user = null;
         String authToken = null;
         try {
@@ -31,9 +34,9 @@ public class RegisterService {
                 userDAO.createUser(new UserData(request.username(), request.password(), request.email()));
                 authToken = UUID.randomUUID().toString();
                 authDAO.createAuth(new AuthData(authToken, request.username()));
-            }
+            } else return new RegisterResult(null, null, "Error: already taken");
         } catch (Exception e) {
-            return new RegisterResult(null, null, "Error: bad request");
+            return new RegisterResult(null, null, "Error: database error");
         }
         return new RegisterResult(request.username(), authToken, null);
     }
