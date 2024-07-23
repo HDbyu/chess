@@ -30,9 +30,6 @@ public class CreateGameHandler implements Route{
         } else if (result.message().equals("Error: database error")) {
             response.status(500);
         } else response.status(200);
-        if(result.message() == null) {
-            return "{}";
-        }
         return gson.toJson(result);
     }
 }

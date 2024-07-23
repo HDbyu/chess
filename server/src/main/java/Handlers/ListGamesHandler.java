@@ -20,7 +20,7 @@ public class ListGamesHandler implements Route {
     @Override
     public Object handle(Request request, Response response) throws Exception {
         var gson = new Gson();
-        ListGamesRequest req = gson.fromJson(request.body(), ListGamesRequest.class);
+        ListGamesRequest req = gson.fromJson(request.headers("authorization"), ListGamesRequest.class);
         ListGamesService service = new ListGamesService(gameDAO, authDAO);
         ListGamesResult result = service.listGames(req);
         if (result.message().equals("Error: unauthorized")) {
