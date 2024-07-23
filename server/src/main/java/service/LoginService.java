@@ -11,12 +11,10 @@ import requestresult.*;
 import java.util.UUID;
 
 public class LoginService {
-    MemoryUserDAO userDAO;
-    MemoryGameDAO gameDAO;
-    MemoryAuthDAO authDAO;
+    private MemoryUserDAO userDAO;
+    private MemoryAuthDAO authDAO;
 
-    public LoginService(MemoryGameDAO gameDAO, MemoryAuthDAO authDAO, MemoryUserDAO userDAO) {
-        this.gameDAO = gameDAO;
+    public LoginService(MemoryAuthDAO authDAO, MemoryUserDAO userDAO) {
         this.authDAO = authDAO;
         this.userDAO = userDAO;
     }

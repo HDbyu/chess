@@ -13,11 +13,9 @@ import spark.Route;
 
 public class RegisterHandler implements Route {
     private MemoryUserDAO userDAO;
-    private MemoryGameDAO gameDAO;
     private MemoryAuthDAO authDAO;
 
-    public RegisterHandler(MemoryGameDAO gameDAO, MemoryAuthDAO authDAO, MemoryUserDAO userDAO) {
-        this.gameDAO = gameDAO;
+    public RegisterHandler(MemoryAuthDAO authDAO, MemoryUserDAO userDAO) {
         this.authDAO = authDAO;
         this.userDAO = userDAO;
     }
@@ -26,7 +24,7 @@ public class RegisterHandler implements Route {
     public Object handle(Request request, Response response) throws Exception {
         var gson = new Gson();
         RegisterRequest req = gson.fromJson(request.body(), RegisterRequest.class);
-        RegisterService service = new RegisterService(gameDAO, authDAO, userDAO);
+        RegisterService service = new RegisterService(authDAO, userDAO);
         RegisterResult result = service.register(req);
         if (result.message().equals("Error: bad request")) {
             response.status(400);

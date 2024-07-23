@@ -12,11 +12,9 @@ import java.util.UUID;
 
 public class RegisterService {
     MemoryUserDAO userDAO;
-    MemoryGameDAO gameDAO;
     MemoryAuthDAO authDAO;
 
-    public RegisterService(MemoryGameDAO gameDAO, MemoryAuthDAO authDAO, MemoryUserDAO userDAO) {
-        this.gameDAO = gameDAO;
+    public RegisterService(MemoryAuthDAO authDAO, MemoryUserDAO userDAO) {
         this.authDAO = authDAO;
         this.userDAO = userDAO;
     }
