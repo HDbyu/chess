@@ -1,8 +1,15 @@
 package server;
 
+import Handlers.*;
+import dataaccess.MemoryAuthDAO;
+import dataaccess.MemoryGameDAO;
+import dataaccess.MemoryUserDAO;
 import spark.*;
 
 public class Server {
+    private MemoryUserDAO userDAO = new MemoryUserDAO();
+    private MemoryGameDAO gameDAO = new MemoryGameDAO();
+    private MemoryAuthDAO authDAO = new MemoryAuthDAO();
 
     public int run(int desiredPort) {
         Spark.port(desiredPort);
@@ -13,7 +20,7 @@ public class Server {
 
         //This line initializes the server and can be removed once you have a functioning endpoint 
         Spark.init();
-
+        Spark.post("/user", (req, res) -> new RegisterHandler(gameDAO, authDAO, userDAO).handle(req, res));
         Spark.awaitInitialization();
         return Spark.port();
     }
