@@ -17,7 +17,7 @@ public class ListGamesService {
         this.authDAO = authDAO;
     }
 
-    public ListGamesResult listGames(LogoutRequest request) {
+    public ListGamesResult listGames(ListGamesRequest request) {
         AuthData authToken = null;
         Collection<GameData> games = null;
         try {
