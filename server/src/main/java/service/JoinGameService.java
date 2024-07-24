@@ -32,13 +32,13 @@ public class JoinGameService {
                         return new JoinGameResult("Error: already taken");
                     }
                     gameDAO.updateGame(new GameData(game.gameID(), authDAO.getAuth(request.authorization()).username(),
-                            null, game.gameName(), game.game()));
+                            game.blackUsername(), game.gameName(), game.game()));
                 }
                 if (request.playerColor().equals(ChessGame.TeamColor.BLACK)) {
                     if (game.blackUsername() != null) {
                         return new JoinGameResult("Error: already taken");
                     }
-                    gameDAO.updateGame(new GameData(game.gameID(), null, authDAO.getAuth(request.authorization()).username(),
+                    gameDAO.updateGame(new GameData(game.gameID(), game.whiteUsername(), authDAO.getAuth(request.authorization()).username(),
                             game.gameName(), game.game()));
                 }
             } else return new JoinGameResult("Error: unauthorized");

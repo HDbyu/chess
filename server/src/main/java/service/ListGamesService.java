@@ -26,10 +26,6 @@ public class ListGamesService {
             authToken = authDAO.getAuth(request.authorization());
 
             if(authToken != null) {
-                //for (GameData gameData : gameDAO.listGames()) {
-                //    games.add(new GameData(gameData.gameID(), gameData.whiteUsername(), gameData.blackUsername(),
-                //              gameData.gameName(), null));
-                //}
                 games = gameDAO.listGames();
             } else return new ListGamesResult(null, "Error: unauthorized");
         } catch (Exception e) {
