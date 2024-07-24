@@ -8,6 +8,8 @@ import requestresult.*;
 import java.util.Collection;
 import java.util.Random;
 
+import static java.lang.Math.abs;
+
 public class CreateGameService {
     private MemoryGameDAO gameDAO;
     private MemoryAuthDAO authDAO;
@@ -27,7 +29,7 @@ public class CreateGameService {
             authToken = authDAO.getAuth(request.authorization());
 
             if(authToken != null) {
-                gameID = new Random().nextInt();
+                gameID = abs(new Random().nextInt());
                 gameDAO.createGame(new GameData(gameID, null, null, request.gameName(), new ChessGame()));
             } else return new CreateGameResult(null, "Error: unauthorized");
         } catch (Exception e) {
