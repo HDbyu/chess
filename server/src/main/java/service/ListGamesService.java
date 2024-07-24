@@ -27,7 +27,7 @@ public class ListGamesService {
 
             if(authToken != null) {
                 games = gameDAO.listGames();
-            } else return new ListGamesResult(null, "Error: unauthorized");
+            } else {return new ListGamesResult(null, "Error: unauthorized");}
         } catch (Exception e) {
             return new ListGamesResult(null, "Error: database error");
         }

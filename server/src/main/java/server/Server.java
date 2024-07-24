@@ -1,6 +1,6 @@
 package server;
 
-import Handlers.*;
+import handlers.*;
 import dataaccess.MemoryAuthDAO;
 import dataaccess.MemoryGameDAO;
 import dataaccess.MemoryUserDAO;

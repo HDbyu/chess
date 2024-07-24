@@ -54,35 +54,35 @@ public class ChessPiece {
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
         if (PieceType.BISHOP == board.getPiece(myPosition).unitType) {
             BishopMove posMoves = new BishopMove();
-            return posMoves.CheckMove(board, myPosition);
+            return posMoves.checkMove(board, myPosition);
         }
         if (PieceType.KING == board.getPiece(myPosition).unitType) {
             KingMove posMoves = new KingMove();
-            return posMoves.CheckMove(board, myPosition);
+            return posMoves.checkMove(board, myPosition);
         }
         if (PieceType.KNIGHT == board.getPiece(myPosition).unitType) {
             KnightMove posMoves = new KnightMove();
-            return posMoves.CheckMove(board, myPosition);
+            return posMoves.checkMove(board, myPosition);
         }
         if (PieceType.PAWN == board.getPiece(myPosition).unitType) {
             PawnMove posMoves = new PawnMove();
-            return posMoves.CheckMove(board, myPosition);
+            return posMoves.checkMove(board, myPosition);
         }
         if (PieceType.QUEEN == board.getPiece(myPosition).unitType) {
             QueenMove posMoves = new QueenMove();
-            return posMoves.CheckMove(board, myPosition);
+            return posMoves.checkMove(board, myPosition);
         }
         if (PieceType.ROOK == board.getPiece(myPosition).unitType) {
             RookMove posMoves = new RookMove();
-            return posMoves.CheckMove(board, myPosition);
+            return posMoves.checkMove(board, myPosition);
         }
         return null;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {return true;}
+        if (o == null || getClass() != o.getClass()) {return false;}
         ChessPiece that = (ChessPiece) o;
         return color == that.color && unitType == that.unitType;
     }

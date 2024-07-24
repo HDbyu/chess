@@ -28,7 +28,7 @@ public class LoginService {
             if(user != null && user.password().equals(request.password())) {
                 authToken = UUID.randomUUID().toString();
                 authDAO.createAuth(new AuthData(authToken, request.username()));
-            } else return new LoginResult(null, null, "Error: unauthorized");
+            } else {return new LoginResult(null, null, "Error: unauthorized");}
         } catch (Exception e) {
             return new LoginResult(null, null, "Error: database error");
         }

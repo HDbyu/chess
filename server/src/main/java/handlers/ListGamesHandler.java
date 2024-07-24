@@ -1,4 +1,4 @@
-package Handlers;
+package handlers;
 
 import com.google.gson.Gson;
 import dataaccess.*;
@@ -27,7 +27,7 @@ public class ListGamesHandler implements Route {
             response.status(200);
         } else if (result.message().equals("Error: unauthorized")) {
             response.status(401);
-        } else response.status(500);
+        } else {response.status(500);}
         return gson.toJson(result);
     }
 }

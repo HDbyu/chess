@@ -31,7 +31,7 @@ public class CreateGameService {
             if(authToken != null) {
                 gameID = abs(new Random().nextInt());
                 gameDAO.createGame(new GameData(gameID, null, null, request.gameName(), new ChessGame()));
-            } else return new CreateGameResult(null, "Error: unauthorized");
+            } else {return new CreateGameResult(null, "Error: unauthorized");}
         } catch (Exception e) {
             return new CreateGameResult(null, "Error: database error");
         }

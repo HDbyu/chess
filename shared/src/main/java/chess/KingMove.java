@@ -9,29 +9,17 @@ public class KingMove {
 
     }
 
-    public Collection<ChessMove> CheckMove(ChessBoard board, ChessPosition beginPos) {
+    public Collection<ChessMove> checkMove(ChessBoard board, ChessPosition beginPos) {
         Set<ChessMove> moves = new HashSet<ChessMove>();
-        movesIterate(moves, beginPos, board, -1,-1);
-        movesIterate(moves, beginPos, board, 1,-1);
-        movesIterate(moves, beginPos, board, -1,1);
-        movesIterate(moves, beginPos, board, 1,1);
-        movesIterate(moves, beginPos, board, 1,0);
-        movesIterate(moves, beginPos, board, -1,0);
-        movesIterate(moves, beginPos, board, 0,1);
-        movesIterate(moves, beginPos, board, 0,-1);
+        IterateMoves iterate = new IterateMoves();
+        iterate.moveIterate(moves, beginPos, board, -1,-1);
+        iterate.moveIterate(moves, beginPos, board, 1,-1);
+        iterate.moveIterate(moves, beginPos, board, -1,1);
+        iterate.moveIterate(moves, beginPos, board, 1,1);
+        iterate.moveIterate(moves, beginPos, board, 1,0);
+        iterate.moveIterate(moves, beginPos, board, -1,0);
+        iterate.moveIterate(moves, beginPos, board, 0,1);
+        iterate.moveIterate(moves, beginPos, board, 0,-1);
         return moves;
-    }
-
-    private void movesIterate(Set<ChessMove> moves, ChessPosition first, ChessBoard board, int rowDir, int colDir) {
-        ChessPosition current;
-        current = first;
-        current = new ChessPosition(current.getRow() + rowDir, current.getColumn() + colDir);
-        if (current.getRow() >= 1 && current.getColumn() >= 1 && current.getRow() <= 8 && current.getColumn() <= 8) {
-            if (board.getPiece(current) == null) {
-                moves.add(new ChessMove(first, current, null));
-            } else if (!board.getPiece(current).getTeamColor().equals(board.getPiece(first).getTeamColor())) {
-                moves.add(new ChessMove(first, current, null));
-            }
-        }
     }
 }

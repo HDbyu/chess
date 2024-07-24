@@ -56,11 +56,11 @@ public class ChessGame {
             return new HashSet<>();
         }
         Collection<ChessMove> moves = myBoard.getPiece(startPosition).pieceMoves(myBoard, startPosition);
-        moves = ReduceMoves(moves);
+        moves = reduceMoves(moves);
         return moves;
     }
 
-    private Collection<ChessMove> ReduceMoves(Collection<ChessMove> moves) {
+    private Collection<ChessMove> reduceMoves(Collection<ChessMove> moves) {
         boolean changeMade = true;
         saveBoard();
         while (changeMade) {
@@ -119,10 +119,11 @@ public class ChessGame {
             myBoard.addPiece(move.getStartPosition(),null);
             turn = turn == TeamColor.WHITE? TeamColor.BLACK:TeamColor.WHITE;
             if (move.getPromotionPiece() != null) {
-                myBoard.addPiece(move.getEndPosition(), new ChessPiece(myBoard.getPiece(move.getEndPosition()).getTeamColor(), move.getPromotionPiece()));
+                myBoard.addPiece(move.getEndPosition(), new ChessPiece(myBoard.getPiece(move.getEndPosition()).getTeamColor(),
+                        move.getPromotionPiece()));
             }
         }
-        else throw new InvalidMoveException();
+        else {throw new InvalidMoveException();}
     }
 
     /**
@@ -149,11 +150,13 @@ public class ChessGame {
                 if (myBoard.getPiece(new ChessPosition(i,j)) != null &&
                         myBoard.getPiece(new ChessPosition(i,j)).getTeamColor() != teamColor) {
                     Collection<ChessMove> checkMoves = myBoard.getPiece(new ChessPosition(i,j)).pieceMoves(myBoard,new ChessPosition(i,j));
-                    if (checkMoves.contains(new ChessMove(new ChessPosition(i,j), new ChessPosition(kingRow,kingCol), null)) ||
-                            checkMoves.contains(new ChessMove(new ChessPosition(i,j), new ChessPosition(kingRow,kingCol), ChessPiece.PieceType.QUEEN)) ||
-                            checkMoves.contains(new ChessMove(new ChessPosition(i,j), new ChessPosition(kingRow,kingCol), ChessPiece.PieceType.BISHOP)) ||
-                            checkMoves.contains(new ChessMove(new ChessPosition(i,j), new ChessPosition(kingRow,kingCol), ChessPiece.PieceType.ROOK)) ||
-                            checkMoves.contains(new ChessMove(new ChessPosition(i,j), new ChessPosition(kingRow,kingCol), ChessPiece.PieceType.KNIGHT))) {
+                    if (checkMoves.contains(new ChessMove(new ChessPosition(i,j), new ChessPosition(kingRow,kingCol),
+                            null)) || checkMoves.contains(new ChessMove(new ChessPosition(i,j), new ChessPosition(kingRow,kingCol),
+                            ChessPiece.PieceType.QUEEN)) || checkMoves.contains(new ChessMove(new ChessPosition(i,j),
+                            new ChessPosition(kingRow,kingCol), ChessPiece.PieceType.BISHOP)) ||
+                            checkMoves.contains(new ChessMove(new ChessPosition(i,j), new ChessPosition(kingRow,kingCol),
+                            ChessPiece.PieceType.ROOK)) || checkMoves.contains(new ChessMove(new ChessPosition(i,j),
+                            new ChessPosition(kingRow,kingCol), ChessPiece.PieceType.KNIGHT))) {
                         return true;
                     }
                 }
@@ -219,8 +222,8 @@ public class ChessGame {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {return true;}
+        if (o == null || getClass() != o.getClass()) {return false;}
         ChessGame chessGame = (ChessGame) o;
         return turn == chessGame.turn && Objects.equals(myBoard, chessGame.myBoard);
     }

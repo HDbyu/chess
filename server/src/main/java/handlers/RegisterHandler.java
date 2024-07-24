@@ -1,8 +1,7 @@
-package Handlers;
+package handlers;
 
 import com.google.gson.Gson;
 import dataaccess.MemoryAuthDAO;
-import dataaccess.MemoryGameDAO;
 import dataaccess.MemoryUserDAO;
 import requestresult.RegisterRequest;
 import requestresult.RegisterResult;
@@ -32,7 +31,7 @@ public class RegisterHandler implements Route {
             response.status(400);
         } else if (result.message().equals("Error: already taken")) {
             response.status(403);
-        } else response.status(500);
+        } else {response.status(500);}
         return gson.toJson(result);
     }
 }

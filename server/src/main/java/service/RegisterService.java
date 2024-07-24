@@ -32,7 +32,7 @@ public class RegisterService {
                 userDAO.createUser(new UserData(request.username(), request.password(), request.email()));
                 authToken = UUID.randomUUID().toString();
                 authDAO.createAuth(new AuthData(authToken, request.username()));
-            } else return new RegisterResult(null, null, "Error: already taken");
+            } else {return new RegisterResult(null, null, "Error: already taken");}
         } catch (Exception e) {
             return new RegisterResult(null, null, "Error: database error");
         }

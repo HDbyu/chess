@@ -22,7 +22,7 @@ public class LogoutService {
 
             if(authToken != null) {
                 authDAO.deleteAuth(request.authorization());
-            } else return new LogoutResult("Error: unauthorized");
+            } else {return new LogoutResult("Error: unauthorized");}
         } catch (Exception e) {
             return new LogoutResult("Error: database error");
         }

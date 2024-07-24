@@ -41,7 +41,7 @@ public class JoinGameService {
                     gameDAO.updateGame(new GameData(game.gameID(), game.whiteUsername(), authDAO.getAuth(request.authorization()).username(),
                             game.gameName(), game.game()));
                 }
-            } else return new JoinGameResult("Error: unauthorized");
+            } else {return new JoinGameResult("Error: unauthorized");}
         } catch (Exception e) {
             return new JoinGameResult("Error: database error");
         }
