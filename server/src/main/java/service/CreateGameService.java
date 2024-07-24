@@ -20,7 +20,7 @@ public class CreateGameService {
     }
 
     public CreateGameResult createGame(CreateGameRequest request) {
-        if (request.gameName().isEmpty()) {
+        if (request.gameName() == null) {
             return new CreateGameResult(null, "Error: bad request");
         }
         AuthData authToken = null;
