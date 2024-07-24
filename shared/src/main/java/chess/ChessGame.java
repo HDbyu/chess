@@ -81,25 +81,20 @@ public class ChessGame {
     }
 
     private void saveBoard() {
-        for (int i = 1; i <= 8; i++) {
-            for (int j = 1; j <= 8; j++) {
-                if (myBoard.getPiece(new ChessPosition(i,j)) != null) {
-                    safeBoard.addPiece(new ChessPosition(i, j), myBoard.getPiece(new ChessPosition(i, j)));
-                }
-                else if (safeBoard.getPiece(new ChessPosition(i,j)) != null) {
-                    safeBoard.addPiece(new ChessPosition(i,j), null);
-                }
-            }
-        }
+        boardSwap(myBoard, safeBoard);
     }
     private void recallBoard() {
+        boardSwap(safeBoard, myBoard);
+    }
+
+    private void boardSwap(ChessBoard first, ChessBoard second) {
         for (int i = 1; i <= 8; i++) {
             for (int j = 1; j <= 8; j++) {
-                if (safeBoard.getPiece(new ChessPosition(i,j)) != null) {
-                    myBoard.addPiece(new ChessPosition(i, j), safeBoard.getPiece(new ChessPosition(i, j)));
+                if (first.getPiece(new ChessPosition(i,j)) != null) {
+                    second.addPiece(new ChessPosition(i, j), first.getPiece(new ChessPosition(i, j)));
                 }
-                else if (myBoard.getPiece(new ChessPosition(i,j)) != null) {
-                    myBoard.addPiece(new ChessPosition(i,j), null);
+                else if (second.getPiece(new ChessPosition(i,j)) != null) {
+                    second.addPiece(new ChessPosition(i,j), null);
                 }
             }
         }

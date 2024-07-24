@@ -24,8 +24,9 @@ class LoginServiceTest {
     @BeforeEach
     void init(){
         try {
-            new ClearService(new MemoryGameDAO(), authDAO, userDAO).clear();
-            userDAO.createUser(new UserData("boy", "goo", "@boyo"));
+            authDAO.clear();
+            userDAO.clear();
+            userDAO.createUser(new UserData("boy", "brov", "@bo"));
         } catch (Exception ignored) {}
     }
 
@@ -34,7 +35,7 @@ class LoginServiceTest {
     @DisplayName("Login Succeed Test")
     void loginSucceed() throws DataAccessException {
         LoginService service = new LoginService(authDAO, userDAO);
-        LoginResult result = service.login(new LoginRequest("boy", "goo"));
+        LoginResult result = service.login(new LoginRequest("boy", "brov"));
         Assertions.assertNotNull(result.authToken(),"Contains token");
     }
 
