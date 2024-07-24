@@ -40,8 +40,8 @@ class LoginServiceTest {
 
     @Test
     @Order(2)
-    @DisplayName("List Game Fail Test")
-    void listGameFail() throws DataAccessException {
+    @DisplayName("Login Fail Test")
+    void loginFail() throws DataAccessException {
         LoginService service = new LoginService(authDAO, userDAO);
         LoginResult result = service.login(new LoginRequest("boy", "notIt"));
         Assertions.assertEquals("Error: unauthorized", result.message(),"Wrong password");
