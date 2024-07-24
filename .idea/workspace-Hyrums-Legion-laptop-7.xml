@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="More Handler fixes(Phase3)" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Record" />
+        <option value="Class" />
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;HDbyu&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/HDbyu/chess.git",
+    "accountId": "c4a86558-5abb-4307-8f0b-61ed39d1e4eb"
+  }
+}]]></component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2ZdeZEoo0WsXUuIH3zHpGaPMMFj" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.All in server.executor": "Run",
+    "JUnit.BishopMoveTests.executor": "Run",
+    "JUnit.ChessBoardTests.defaultGameBoard.executor": "Debug",
+    "JUnit.ChessBoardTests.executor": "Run",
+    "JUnit.ChessBoardTests.getAddPiece.executor": "Debug",
+    "JUnit.ChessGameTests$ValidMoveTests.executor": "Run",
+    "JUnit.ChessGameTests$ValidMoveTests.kingInDanger.executor": "Debug",
+    "JUnit.ChessGameTests$ValidMoveTests.moveIntoCheck.executor": "Debug",
+    "JUnit.ChessGameTests.blackTeamPawnCheckmate.executor": "Debug",
+    "JUnit.ChessGameTests.executor": "Run",
+    "JUnit.ChessGameTests.makeValidMoves.executor": "Debug",
+    "JUnit.ChessGameTests.whiteCheck.executor": "Debug",
+    "JUnit.ChessMoveTests.executor": "Run",
+    "JUnit.ChessPositionTests.executor": "Run",
+    "JUnit.FullGameTest.executor": "Run",
+    "JUnit.FullGameTest.scholarsMate.executor": "Debug",
+    "JUnit.GameStatusTests.executor": "Run",
+    "JUnit.KingMoveTests.executor": "Run",
+    "JUnit.KnightMoveTests.executor": "Run",
+    "JUnit.MakeMoveTests.executor": "Run",
+    "JUnit.PawnMoveTests.executor": "Run",
+    "JUnit.PawnMoveTests.pawnMiddleOfBoardWhite.executor": "Debug",
+    "JUnit.QueenMoveTests.executor": "Run",
+    "JUnit.RookMoveTests.executor": "Run",
+    "JUnit.StandardAPITests.executor": "Run",
+    "JUnit.StandardAPITests.loginInvalidUser.executor": "Run",
+    "JUnit.StandardAPITests.successLogout.executor": "Debug",
+    "JUnit.chess in shared (1).executor": "Run",
+    "JUnit.chess in shared.executor": "Run",
+    "JUnit.game in shared.executor": "Run",
+    "JUnit.passoff.chess.game in shared.executor": "Run",
+    "JUnit.passoff.chess.piece in shared.executor": "Run",
+    "JUnit.passoffTests in shared.executor": "Run",
+    "JUnit.passoffTests.chessTests in shared.executor": "Run",
+    "JUnit.piece in shared.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Hyrum/OneDrive/Documents/cs240/chess",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.34252873",
+    "settings.editor.selected.configurable": "Errors",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Hyrum\OneDrive\Documents\CS240\chess\server\src\main\java\server" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="service" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.StandardAPITests">
+    <configuration name="MakeMoveTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shared" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.chess.game.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff.chess.game" />
+      <option name="MAIN_CLASS_NAME" value="passoff.chess.game.MakeMoveTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StandardAPITests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff.server" />
+      <option name="MAIN_CLASS_NAME" value="passoff.server.StandardAPITests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StandardAPITests.loginInvalidUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff.server" />
+      <option name="MAIN_CLASS_NAME" value="passoff.server.StandardAPITests" />
+      <option name="METHOD_NAME" value="loginInvalidUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StandardAPITests.successLogout" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff.server" />
+      <option name="MAIN_CLASS_NAME" value="passoff.server.StandardAPITests" />
+      <option name="METHOD_NAME" value="successLogout" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="passoff.chess.game in shared" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shared" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoff.chess.game.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoff.chess.game" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.StandardAPITests" />
+        <item itemvalue="JUnit.StandardAPITests.successLogout" />
+        <item itemvalue="JUnit.StandardAPITests.loginInvalidUser" />
+        <item itemvalue="JUnit.passoff.chess.game in shared" />
+        <item itemvalue="JUnit.MakeMoveTests" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="da512ee9-0e35-4cc9-b52d-e9af9f5dfe9a" name="Changes" comment="" />
+      <created>1702756436549</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1702756436549</updated>
+      <workItem from="1705385185868" duration="204000" />
+      <workItem from="1705385395736" duration="172000" />
+      <workItem from="1705423223433" duration="767000" />
+      <workItem from="1705546210387" duration="284000" />
+      <workItem from="1705546896795" duration="79000" />
+      <workItem from="1705547001625" duration="93000" />
+      <workItem from="1705547129970" duration="111000" />
+      <workItem from="1705547299002" duration="2108000" />
+      <workItem from="1705550240445" duration="607000" />
+      <workItem from="1705595771681" duration="911000" />
+      <workItem from="1705636702180" duration="918000" />
+      <workItem from="1705728174275" duration="5923000" />
+      <workItem from="1705901211508" duration="523000" />
+      <workItem from="1705948354749" duration="397000" />
+      <workItem from="1705948789773" duration="2863000" />
+      <workItem from="1705957917588" duration="1817000" />
+      <workItem from="1705981920609" duration="8589000" />
+      <workItem from="1706027166468" duration="6342000" />
+      <workItem from="1706034974593" duration="4542000" />
+      <workItem from="1706202668402" duration="2729000" />
+      <workItem from="1706209275022" duration="56000" />
+      <workItem from="1706252093461" duration="745000" />
+      <workItem from="1706583577845" duration="3781000" />
+      <workItem from="1706640703480" duration="2771000" />
+      <workItem from="1706648180959" duration="1015000" />
+      <workItem from="1706757848183" duration="6686000" />
+      <workItem from="1706805026318" duration="1528000" />
+      <workItem from="1706844070674" duration="7968000" />
+      <workItem from="1706930436087" duration="2296000" />
+      <workItem from="1706934433766" duration="89000" />
+      <workItem from="1707166711339" duration="4349000" />
+      <workItem from="1707181980244" duration="2534000" />
+      <workItem from="1708117296836" duration="2463000" />
+      <workItem from="1708119786701" duration="663000" />
+      <workItem from="1708207833100" duration="741000" />
+      <workItem from="1708462767696" duration="1126000" />
+      <workItem from="1708619271211" duration="1030000" />
+      <workItem from="1708631026317" duration="340000" />
+      <workItem from="1708631396928" duration="56000" />
+      <workItem from="1708631460627" duration="270000" />
+      <workItem from="1708631734098" duration="381000" />
+      <workItem from="1708632153492" duration="17000" />
+      <workItem from="1708797822023" duration="10720000" />
+      <workItem from="1709659271772" duration="2000" />
+      <workItem from="1719464399825" duration="777000" />
+      <workItem from="1719506898647" duration="2238000" />
+      <workItem from="1719510392838" duration="3706000" />
+      <workItem from="1719596748305" duration="2457000" />
+      <workItem from="1719603088897" duration="1524000" />
+      <workItem from="1719604620392" duration="171000" />
+      <workItem from="1719605155549" duration="1941000" />
+      <workItem from="1719965319565" duration="131000" />
+      <workItem from="1719966374561" duration="7000" />
+      <workItem from="1719966388083" duration="4622000" />
+      <workItem from="1720051827666" duration="2824000" />
+      <workItem from="1720123813638" duration="16000" />
+      <workItem from="1720129870242" duration="382000" />
+      <workItem from="1721334726299" duration="6088000" />
+      <workItem from="1721362495779" duration="1026000" />
+      <workItem from="1721415089038" duration="8248000" />
+      <workItem from="1721675008310" duration="1915000" />
+      <workItem from="1721687661760" duration="7813000" />
+      <workItem from="1721696784760" duration="85000" />
+      <workItem from="1721697188986" duration="9068000" />
+      <workItem from="1721756629225" duration="2773000" />
+      <workItem from="1721763086652" duration="10426000" />
+    </task>
+    <task id="LOCAL-00001" summary="add(client) dependency on server for running tests.">
+      <option name="closed" value="true" />
+      <created>1703044500221</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1703044500221</updated>
+    </task>
+    <task id="LOCAL-00002" summary="fix(shared) maven resource reference">
+      <option name="closed" value="true" />
+      <created>1703046815883</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1703046815883</updated>
+    </task>
+    <task id="LOCAL-00003" summary="phase 0(passoff)">
+      <option name="closed" value="true" />
+      <created>1719598434932</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1719598434932</updated>
+    </task>
+    <task id="LOCAL-00004" summary="phase 0(passoff fix)">
+      <option name="closed" value="true" />
+      <created>1719598845117</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1719598845117</updated>
+    </task>
+    <task id="LOCAL-00005" summary="phase 0(passoff fix2)">
+      <option name="closed" value="true" />
+      <created>1719599124472</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1719599124472</updated>
+    </task>
+    <task id="LOCAL-00006" summary="phase 1(Fix fullgame error)">
+      <option name="closed" value="true" />
+      <created>1720053048042</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1720053048042</updated>
+    </task>
+    <task id="LOCAL-00007" summary="phase 1(Fix validMoves error)">
+      <option name="closed" value="true" />
+      <created>1720054413737</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1720054413737</updated>
+    </task>
+    <task id="LOCAL-00008" summary="init(Phase3)">
+      <option name="closed" value="true" />
+      <created>1721340273133</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1721340273133</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Started UserDAO(Phase3)">
+      <option name="closed" value="true" />
+      <created>1721357668399</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1721357668399</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added code UserDAOInterface(Phase3)">
+      <option name="closed" value="true" />
+      <created>1721416685951</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1721416685951</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Fixed name scheme(Phase3)">
+      <option name="closed" value="true" />
+      <created>1721417096261</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1721417096261</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Fixed name scheme(Phase3)">
+      <option name="closed" value="true" />
+      <created>1721417652856</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1721417652856</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Created MemoryGameDAO(Phase3)">
+      <option name="closed" value="true" />
+      <created>1721418229404</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1721418229404</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added updateGame(Phase3)">
+      <option name="closed" value="true" />
+      <created>1721418650463</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1721418650463</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Code AuthDAO(Phase3)">
+      <option name="closed" value="true" />
+      <created>1721419489786</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1721419489786</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Working on ClearService(Phase3)">
+      <option name="closed" value="true" />
+      <created>1721430005468</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1721430005468</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Added Request/result(Phase3)">
+      <option name="closed" value="true" />
+      <created>1721689161306</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1721689161306</updated>
+    </task>
+    <task id="LOCAL-00018" summary="RegisterService writtten(Phase3)">
+      <option name="closed" value="true" />
+      <created>1721692256096</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1721692256096</updated>
+    </task>
+    <task id="LOCAL-00019" summary="regHandler done(Phase3)">
+      <option name="closed" value="true" />
+      <created>1721697873098</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1721697873098</updated>
+    </task>
+    <task id="LOCAL-00020" summary="register implemented in server(Phase3)">
+      <option name="closed" value="true" />
+      <created>1721698360315</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1721698360315</updated>
+    </task>
+    <task id="LOCAL-00021" summary="LoginService done(Phase3)">
+      <option name="closed" value="true" />
+      <created>1721708074569</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1721708074569</updated>
+    </task>
+    <task id="LOCAL-00022" summary="LoginHandler done(Phase3)">
+      <option name="closed" value="true" />
+      <created>1721708941267</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1721708941267</updated>
+    </task>
+    <task id="LOCAL-00023" summary="LogoutService done(Phase3)">
+      <option name="closed" value="true" />
+      <created>1721710431369</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1721710431369</updated>
+    </task>
+    <task id="LOCAL-00024" summary="LogoutHandler done(Phase3)">
+      <option name="closed" value="true" />
+      <created>1721711280454</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1721711280454</updated>
+    </task>
+    <task id="LOCAL-00025" summary="LsGamesService done(Phase3)">
+      <option name="closed" value="true" />
+      <created>1721713941646</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1721713941646</updated>
+    </task>
+    <task id="LOCAL-00026" summary="LsGamesHandler done(Phase3)">
+      <option name="closed" value="true" />
+      <created>1721757661869</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1721757661869</updated>
+    </task>
+    <task id="LOCAL-00027" summary="CreateGameService done(Phase3)">
+      <option name="closed" value="true" />
+      <created>1721765444570</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1721765444570</updated>
+    </task>
+    <task id="LOCAL-00028" summary="CreateGameHandler done(Phase3)">
+      <option name="closed" value="true" />
+      <created>1721766636887</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1721766636887</updated>
+    </task>
+    <task id="LOCAL-00029" summary="JoinGameService done(Phase3)">
+      <option name="closed" value="true" />
+      <created>1721768346273</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1721768346273</updated>
+    </task>
+    <task id="LOCAL-00030" summary="JoinGameHandler done(Phase3)">
+      <option name="closed" value="true" />
+      <created>1721768931359</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1721768931359</updated>
+    </task>
+    <task id="LOCAL-00031" summary="ClearHandler done(Phase3)">
+      <option name="closed" value="true" />
+      <created>1721769777866</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1721769777866</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Handler fix(Phase3)">
+      <option name="closed" value="true" />
+      <created>1721771719479</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1721771719479</updated>
+    </task>
+    <task id="LOCAL-00033" summary="More Handler fixes(Phase3)">
+      <option name="closed" value="true" />
+      <created>1721774935529</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1721774935529</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init(Phase3)" />
+    <MESSAGE value="Started UserDAO(Phase3)" />
+    <MESSAGE value="Added code UserDAOInterface(Phase3)" />
+    <MESSAGE value="Fixed name scheme(Phase3)" />
+    <MESSAGE value="Created MemoryGameDAO(Phase3)" />
+    <MESSAGE value="Added updateGame(Phase3)" />
+    <MESSAGE value="Code AuthDAO(Phase3)" />
+    <MESSAGE value="Working on ClearService(Phase3)" />
+    <MESSAGE value="Added Request/result(Phase3)" />
+    <MESSAGE value="RegisterService writtten(Phase3)" />
+    <MESSAGE value="regHandler done(Phase3)" />
+    <MESSAGE value="register implemented in server(Phase3)" />
+    <MESSAGE value="LoginService done(Phase3)" />
+    <MESSAGE value="LoginHandler done(Phase3)" />
+    <MESSAGE value="LogoutService done(Phase3)" />
+    <MESSAGE value="LogoutHandler done(Phase3)" />
+    <MESSAGE value="LsGamesService done(Phase3)" />
+    <MESSAGE value="LsGamesHandler done(Phase3)" />
+    <MESSAGE value="CreateGameService done(Phase3)" />
+    <MESSAGE value="CreateGameHandler done(Phase3)" />
+    <MESSAGE value="JoinGameService done(Phase3)" />
+    <MESSAGE value="JoinGameHandler done(Phase3)" />
+    <MESSAGE value="ClearHandler done(Phase3)" />
+    <MESSAGE value="Handler fix(Phase3)" />
+    <MESSAGE value="More Handler fixes(Phase3)" />
+    <option name="LAST_COMMIT_MESSAGE" value="More Handler fixes(Phase3)" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/shared/src/test/java/passoffTests/chessTests/ChessGameTests.java</url>
+          <line>682</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/shared/src/test/java/passoffTests/chessTests/ChessGameTests.java</url>
+          <line>734</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/server/src/main/java/service/LoginService.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/server/src/main/java/service/LogoutService.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/shared/src/test/java/passoff/chess/game/FullGameTest.java</url>
+          <line>13</line>
+          <properties class="passoff.chess.game.FullGameTest" method="scholarsMate">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
