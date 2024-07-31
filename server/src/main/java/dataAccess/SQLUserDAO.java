@@ -1,5 +1,6 @@
 package dataaccess;
 
+import model.AuthData;
 import model.UserData;
 
 import java.sql.SQLException;
@@ -11,17 +12,54 @@ public class SQLUserDAO implements UserDAO{
     }
     @Override
     public void createUser(UserData u) throws DataAccessException {
+        try (var conn = DatabaseManager.getConnection()) {
 
+            try (var preparedStatement = conn.prepareStatement("INSERT INTO userData " +
+                    "(username, password, email) VALUES(u.username, u.password, u.email)")) {
+                preparedStatement.setString(1, u.username());
+                preparedStatement.setString(2, u.password());
+                preparedStatement.setString(3, u.email());
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new DataAccessException(e.getMessage());
+        }
     }
 
     @Override
     public UserData getUser(String name) throws DataAccessException {
-        return null;
+        try (var conn = DatabaseManager.getConnection()) {
+
+            try (var preparedStatement = conn.prepareStatement("SELECT username, password, email FROM " +
+                    "userData WHERE username = name")) {
+                preparedStatement.setString(1, name);
+                try (var rs = preparedStatement.executeQuery()) {
+                    String username = null;
+                    String password = null;
+                    String email = null;
+                    while (rs.next()) {
+                        username = rs.getString("username");
+                        password = rs.getString("password");
+                        email = rs.getString("email");
+                    }
+                    return new UserData(username, password, email);
+                }
+            }
+        } catch (SQLException e) {
+            throw new DataAccessException(e.getMessage());
+        }
     }
 
     @Override
     public void clear() throws DataAccessException {
+        try (var conn = DatabaseManager.getConnection()) {
 
+            try (var preparedStatement = conn.prepareStatement("DELETE FROM userData")) {
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new DataAccessException(e.getMessage());
+        }
     }
 
     private final String[] createStatements = {

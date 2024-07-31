@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class SQLAuthDAO implements AuthDAO {
 
     SQLAuthDAO() throws DataAccessException {
-        configureDatabase();
+        DatabaseManager.configureDatabase(createStatements);
     }
     @Override
     public void clear() throws DataAccessException {
@@ -80,16 +80,4 @@ public class SQLAuthDAO implements AuthDAO {
             """
     };
 
-    private void configureDatabase() throws DataAccessException {
-        DatabaseManager.createDatabase();
-        try (var conn = DatabaseManager.getConnection()) {
-            for (var statement : createStatements) {
-                try (var preparedStatement = conn.prepareStatement(statement)) {
-                    preparedStatement.executeUpdate();
-                }
-            }
-        } catch (SQLException ex) {
-            throw new DataAccessException(ex.getMessage());
-        }
-    }
 }
