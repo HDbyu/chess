@@ -5,16 +5,16 @@ import model.AuthData;
 import java.sql.SQLException;
 
 public class SQLAuthDAO implements AuthDAO {
+
+    SQLAuthDAO() throws DataAccessException {
+        configureDatabase();
+    }
     @Override
     public void clear() throws DataAccessException {
         try (var conn = DatabaseManager.getConnection()) {
 
-            try (var preparedStatement = conn.prepareStatement("DELETE tokens from SAVEPOINT ")) {
-                try (var rs = preparedStatement.executeQuery()) {
-                    while (rs.next()) {
-
-                    }
-                }
+            try (var preparedStatement = conn.prepareStatement("DELETE FROM authData")) {
+                preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {
             throw new DataAccessException(e.getMessage());
@@ -25,15 +25,11 @@ public class SQLAuthDAO implements AuthDAO {
     public void createAuth(AuthData u) throws DataAccessException {
         try (var conn = DatabaseManager.getConnection()) {
 
-            try (var preparedStatement = conn.prepareStatement("SET auth, name from AuthData")) {
-                try (var rs = preparedStatement.executeQuery()) {
-                    while (rs.next()) {
-                        var auth = rs.getString("auth");
-                        var name = rs.getString("name");
-
-                        System.out.printf("auth: %d, name: %s", auth, name);
-                    }
-                }
+            try (var preparedStatement = conn.prepareStatement("INSERT INTO authData (auth, username) " +
+                    "VALUES(u.authToken, u.username)")) {
+                preparedStatement.setString(1, u.authToken());
+                preparedStatement.setString(2, u.username());
+                preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {
             throw new DataAccessException(e.getMessage());
@@ -44,15 +40,17 @@ public class SQLAuthDAO implements AuthDAO {
     public AuthData getAuth(String token) throws DataAccessException {
         try (var conn = DatabaseManager.getConnection()) {
 
-            try (var preparedStatement = conn.prepareStatement("SELECT authData from SAVEPOINT where auth = token")) {
+            try (var preparedStatement = conn.prepareStatement("SELECT auth, username FROM authData WHERE auth = token")) {
+                preparedStatement.setString(1, token);
                 try (var rs = preparedStatement.executeQuery()) {
+                    String auth = null;
+                    String username = null;
                     while (rs.next()) {
-                        var id = rs.getInt("id");
-                        var name = rs.getString("name");
-                        var type = rs.getString("type");
+                        auth = rs.getString("auth");
+                        username = rs.getString("username");
 
-                        System.out.printf("id: %d, name: %s, type: %s%n", id, name, type);
                     }
+                    return new AuthData(auth, username);
                 }
             }
         } catch (SQLException e) {
@@ -62,6 +60,36 @@ public class SQLAuthDAO implements AuthDAO {
 
     @Override
     public void deleteAuth(String token) throws DataAccessException {
+        try (var conn = DatabaseManager.getConnection()) {
 
+            try (var preparedStatement = conn.prepareStatement("DELETE FROM authData WHERE auth = token")) {
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new DataAccessException(e.getMessage());
+        }
+    }
+
+    private final String[] createStatements = {
+            """
+            CREATE TABLE IF NOT EXISTS  authData (
+              `auth` varchar(256) NOT NULL,
+              `username` varchar(256) NOT NULL,
+              PRIMARY KEY (`auth`),
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+            """
+    };
+
+    private void configureDatabase() throws DataAccessException {
+        DatabaseManager.createDatabase();
+        try (var conn = DatabaseManager.getConnection()) {
+            for (var statement : createStatements) {
+                try (var preparedStatement = conn.prepareStatement(statement)) {
+                    preparedStatement.executeUpdate();
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DataAccessException(ex.getMessage());
+        }
     }
 }
