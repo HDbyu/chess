@@ -5,6 +5,7 @@ import dataaccess.MemoryGameDAO;
 import dataaccess.MemoryUserDAO;
 import model.AuthData;
 import model.UserData;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import requestresult.RegisterRequest;
 import requestresult.RegisterResult;
 
@@ -29,7 +30,8 @@ public class RegisterService {
             user = userDAO.getUser(request.username());
 
             if(user == null) {
-                userDAO.createUser(new UserData(request.username(), request.password(), request.email()));
+                userDAO.createUser(new UserData(request.username(),
+                        BCrypt.hashpw(request.password(), BCrypt.gensalt()), request.email()));
                 authToken = UUID.randomUUID().toString();
                 authDAO.createAuth(new AuthData(authToken, request.username()));
             } else {return new RegisterResult(null, null, "Error: already taken");}

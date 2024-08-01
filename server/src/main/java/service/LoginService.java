@@ -5,6 +5,7 @@ import dataaccess.MemoryGameDAO;
 import dataaccess.MemoryUserDAO;
 import model.AuthData;
 import model.UserData;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import requestresult.*;
 
 
@@ -25,7 +26,7 @@ public class LoginService {
         try {
             user = userDAO.getUser(request.username());
 
-            if(user != null && user.password().equals(request.password())) {
+            if(user != null && BCrypt.checkpw(request.password(), user.password())) {
                 authToken = UUID.randomUUID().toString();
                 authDAO.createAuth(new AuthData(authToken, request.username()));
             } else {return new LoginResult(null, null, "Error: unauthorized");}
