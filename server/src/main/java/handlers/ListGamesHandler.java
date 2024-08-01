@@ -10,9 +10,9 @@ import spark.Route;
 
 public class ListGamesHandler implements Route {
     private SQLGameDAO gameDAO;
-    private MemoryAuthDAO authDAO;
+    private SQLAuthDAO authDAO;
 
-    public ListGamesHandler(MemoryAuthDAO authDAO, SQLGameDAO gameDAO) {
+    public ListGamesHandler(SQLAuthDAO authDAO, SQLGameDAO gameDAO) {
         this.authDAO = authDAO;
         this.gameDAO = gameDAO;
     }

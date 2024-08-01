@@ -2,6 +2,7 @@ package service;
 
 import dataaccess.MemoryAuthDAO;
 import dataaccess.MemoryGameDAO;
+import dataaccess.SQLAuthDAO;
 import dataaccess.SQLGameDAO;
 import model.AuthData;
 import model.GameData;
@@ -13,9 +14,9 @@ import java.util.Collection;
 
 public class ListGamesService {
     private SQLGameDAO gameDAO;
-    private MemoryAuthDAO authDAO;
+    private SQLAuthDAO authDAO;
 
-    public ListGamesService(SQLGameDAO gameDAO, MemoryAuthDAO authDAO) {
+    public ListGamesService(SQLGameDAO gameDAO, SQLAuthDAO authDAO) {
         this.gameDAO = gameDAO;
         this.authDAO = authDAO;
     }

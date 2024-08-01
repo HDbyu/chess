@@ -12,9 +12,9 @@ import static java.lang.Math.abs;
 
 public class CreateGameService {
     private SQLGameDAO gameDAO;
-    private MemoryAuthDAO authDAO;
+    private SQLAuthDAO authDAO;
 
-    public CreateGameService(SQLGameDAO gameDAO, MemoryAuthDAO authDAO) {
+    public CreateGameService(SQLGameDAO gameDAO, SQLAuthDAO authDAO) {
         this.gameDAO = gameDAO;
         this.authDAO = authDAO;
     }

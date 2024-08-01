@@ -7,11 +7,11 @@ import service.*;
 import spark.*;
 
 public class ClearHandler implements Route{
-    private MemoryAuthDAO authDAO;
+    private SQLAuthDAO authDAO;
     private SQLGameDAO gameDAO;
     private SQLUserDAO userDAO;
 
-    public ClearHandler(MemoryAuthDAO authDAO, SQLGameDAO gameDAO, SQLUserDAO userDAO) {
+    public ClearHandler(SQLAuthDAO authDAO, SQLGameDAO gameDAO, SQLUserDAO userDAO) {
         this.authDAO = authDAO;
         this.gameDAO = gameDAO;
         this.userDAO = userDAO;

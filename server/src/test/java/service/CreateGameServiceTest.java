@@ -23,7 +23,15 @@ class CreateGameServiceTest {
         }
     }
 
-    private static MemoryAuthDAO authDAO = new MemoryAuthDAO();
+    private static SQLAuthDAO authDAO;
+
+    static {
+        try {
+            authDAO = new SQLAuthDAO();
+        } catch (DataAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @BeforeAll
     static void init(){

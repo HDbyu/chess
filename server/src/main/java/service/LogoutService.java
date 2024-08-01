@@ -2,6 +2,7 @@ package service;
 
 import dataaccess.MemoryAuthDAO;
 import dataaccess.MemoryUserDAO;
+import dataaccess.SQLAuthDAO;
 import model.AuthData;
 import model.UserData;
 import requestresult.*;
@@ -9,9 +10,9 @@ import requestresult.*;
 import java.util.UUID;
 
 public class LogoutService {
-    private MemoryAuthDAO authDAO;
+    private SQLAuthDAO authDAO;
 
-    public LogoutService(MemoryAuthDAO authDAO) {
+    public LogoutService(SQLAuthDAO authDAO) {
         this.authDAO = authDAO;
     }
 

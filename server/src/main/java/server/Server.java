@@ -7,11 +7,12 @@ import spark.*;
 public class Server {
     private SQLUserDAO userDAO;
     private SQLGameDAO gameDAO;
-    private MemoryAuthDAO authDAO = new MemoryAuthDAO();
+    private SQLAuthDAO authDAO;
     public Server() {
         try {
             userDAO = new SQLUserDAO();
             gameDAO = new SQLGameDAO();
+            authDAO = new SQLAuthDAO();
         } catch (DataAccessException e) {
             throw new RuntimeException(e);
         }

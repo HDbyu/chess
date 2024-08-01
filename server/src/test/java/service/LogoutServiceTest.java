@@ -1,9 +1,6 @@
 package service;
 
-import dataaccess.DataAccessException;
-import dataaccess.MemoryAuthDAO;
-import dataaccess.MemoryGameDAO;
-import dataaccess.MemoryUserDAO;
+import dataaccess.*;
 import model.AuthData;
 import model.UserData;
 import org.junit.jupiter.api.*;
@@ -16,7 +13,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class LogoutServiceTest {
-    private static MemoryAuthDAO authDAO = new MemoryAuthDAO();
+    private static SQLAuthDAO authDAO;
+
+    static {
+        try {
+            authDAO = new SQLAuthDAO();
+        } catch (DataAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @BeforeEach
     void init(){

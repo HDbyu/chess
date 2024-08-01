@@ -1,9 +1,6 @@
 package service;
 
-import dataaccess.MemoryAuthDAO;
-import dataaccess.MemoryGameDAO;
-import dataaccess.MemoryUserDAO;
-import dataaccess.SQLUserDAO;
+import dataaccess.*;
 import model.AuthData;
 import model.UserData;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -14,9 +11,9 @@ import java.util.UUID;
 
 public class LoginService {
     private SQLUserDAO userDAO;
-    private MemoryAuthDAO authDAO;
+    private SQLAuthDAO authDAO;
 
-    public LoginService(MemoryAuthDAO authDAO, SQLUserDAO userDAO) {
+    public LoginService(SQLAuthDAO authDAO, SQLUserDAO userDAO) {
         this.authDAO = authDAO;
         this.userDAO = userDAO;
     }

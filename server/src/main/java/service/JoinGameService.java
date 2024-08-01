@@ -9,9 +9,9 @@ import java.util.Random;
 
 public class JoinGameService {
     private SQLGameDAO gameDAO;
-    private MemoryAuthDAO authDAO;
+    private SQLAuthDAO authDAO;
 
-    public JoinGameService(SQLGameDAO gameDAO, MemoryAuthDAO authDAO) {
+    public JoinGameService(SQLGameDAO gameDAO, SQLAuthDAO authDAO) {
         this.gameDAO = gameDAO;
         this.authDAO = authDAO;
     }

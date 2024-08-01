@@ -3,6 +3,7 @@ package handlers;
 import com.google.gson.Gson;
 import dataaccess.MemoryAuthDAO;
 import dataaccess.MemoryUserDAO;
+import dataaccess.SQLAuthDAO;
 import dataaccess.SQLUserDAO;
 import requestresult.RegisterRequest;
 import requestresult.RegisterResult;
@@ -13,9 +14,9 @@ import spark.Route;
 
 public class RegisterHandler implements Route {
     private SQLUserDAO userDAO;
-    private MemoryAuthDAO authDAO;
+    private SQLAuthDAO authDAO;
 
-    public RegisterHandler(MemoryAuthDAO authDAO, SQLUserDAO userDAO) {
+    public RegisterHandler(SQLAuthDAO authDAO, SQLUserDAO userDAO) {
         this.authDAO = authDAO;
         this.userDAO = userDAO;
     }
