@@ -43,7 +43,7 @@ public class JoinGameService {
                 }
             } else {return new JoinGameResult("Error: unauthorized");}
         } catch (Exception e) {
-            return new JoinGameResult("Error: database error");
+            return new JoinGameResult("Error: " + e.getMessage());
         }
         return new JoinGameResult(null);
     }

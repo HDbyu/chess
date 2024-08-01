@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class SQLUserDAO implements UserDAO{
 
-    SQLUserDAO() throws DataAccessException{
+    public SQLUserDAO() throws DataAccessException{
         DatabaseManager.configureDatabase(createStatements);
     }
     @Override
@@ -31,18 +31,21 @@ public class SQLUserDAO implements UserDAO{
         try (var conn = DatabaseManager.getConnection()) {
 
             try (var preparedStatement = conn.prepareStatement("SELECT username, password, email FROM " +
-                    "userData WHERE username = name")) {
+                    "userData WHERE username =?")) {
                 preparedStatement.setString(1, name);
                 try (var rs = preparedStatement.executeQuery()) {
                     String username = null;
                     String password = null;
                     String email = null;
-                    while (rs.next()) {
+                    if (rs.next()) {
                         username = rs.getString("username");
                         password = rs.getString("password");
                         email = rs.getString("email");
+                        return new UserData(username, password, email);
                     }
-                    return new UserData(username, password, email);
+                    else {
+                        return null;
+                    }
                 }
             }
         } catch (SQLException e) {

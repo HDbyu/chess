@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class SQLAuthDAO implements AuthDAO {
 
-    SQLAuthDAO() throws DataAccessException {
+    public SQLAuthDAO() throws DataAccessException {
         DatabaseManager.configureDatabase(createStatements);
     }
     @Override

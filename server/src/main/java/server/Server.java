@@ -10,6 +10,9 @@ public class Server {
     private MemoryUserDAO userDAO = new MemoryUserDAO();
     private MemoryGameDAO gameDAO = new MemoryGameDAO();
     private MemoryAuthDAO authDAO = new MemoryAuthDAO();
+    public Server() {
+
+    }
 
     public int run(int desiredPort) {
         Spark.port(desiredPort);
