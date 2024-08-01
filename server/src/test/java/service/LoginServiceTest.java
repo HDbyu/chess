@@ -6,7 +6,7 @@ import model.AuthData;
 import model.GameData;
 import model.UserData;
 import org.junit.jupiter.api.*;
-import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.mindrot.jbcrypt.BCrypt;
 import requestresult.ListGamesRequest;
 import requestresult.ListGamesResult;
 import requestresult.LoginRequest;
