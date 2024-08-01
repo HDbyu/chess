@@ -100,8 +100,8 @@ public class SQLGameDAO implements GameDAO{
     public void updateGame(GameData u) throws DataAccessException {
         try (var conn = DatabaseManager.getConnection()) {
             Gson gson = new Gson();
-            try (var preparedStatement = conn.prepareStatement("UPDATE gameData (gameID, whiteUsername, " +
-                    "blackUsername, gameName, game) VALUES(?, ?, ?, ?, ?) WHERE gameID =?")) {
+            try (var preparedStatement = conn.prepareStatement("UPDATE gameData SET gameID =?, " +
+                    "whiteUsername =?, blackUsername =?, gameName =?, game =? WHERE gameID =?")) {
                 preparedStatement.setInt(1, u.gameID());
                 preparedStatement.setString(2, u.whiteUsername());
                 preparedStatement.setString(3, u.blackUsername());
@@ -119,8 +119,8 @@ public class SQLGameDAO implements GameDAO{
             """
             CREATE TABLE IF NOT EXISTS  gameData (
               `gameID` int NOT NULL,
-              `whiteUsername` varchar(256),
-              `blackUsername` varchar(256),
+              `whiteUsername` varchar(256) NULL,
+              `blackUsername` varchar(256) NULL,
               `gameName` varchar(256) NOT NULL,
               `game` TEXT DEFAULT NULL,
               PRIMARY KEY (`gameID`)
