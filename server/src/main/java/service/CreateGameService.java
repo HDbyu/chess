@@ -33,7 +33,7 @@ public class CreateGameService {
                 gameDAO.createGame(new GameData(gameID, null, null, request.gameName(), new ChessGame()));
             } else {return new CreateGameResult(null, "Error: unauthorized");}
         } catch (Exception e) {
-            return new CreateGameResult(null, "Error: database error");
+            return new CreateGameResult(null, "Error: " + e.getMessage());
         }
         return new CreateGameResult(gameID, null);
     }
