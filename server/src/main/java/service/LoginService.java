@@ -29,7 +29,7 @@ public class LoginService {
                 authDAO.createAuth(new AuthData(authToken, request.username()));
             } else {return new LoginResult(null, null, "Error: unauthorized");}
         } catch (Exception e) {
-            return new LoginResult(null, null, "Error: database error");
+            return new LoginResult(null, null, "Error: " + e.getMessage());
         }
         return new LoginResult(request.username(), authToken, null);
     }

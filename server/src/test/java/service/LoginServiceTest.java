@@ -6,6 +6,7 @@ import model.AuthData;
 import model.GameData;
 import model.UserData;
 import org.junit.jupiter.api.*;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import requestresult.ListGamesRequest;
 import requestresult.ListGamesResult;
 import requestresult.LoginRequest;
@@ -40,7 +41,7 @@ class LoginServiceTest {
         try {
             authDAO.clear();
             userDAO.clear();
-            userDAO.createUser(new UserData("boy", "brov", "@bo"));
+            userDAO.createUser(new UserData("boy", BCrypt.hashpw("brov", BCrypt.gensalt()), "@bo"));
         } catch (Exception ignored) {}
     }
 
