@@ -19,20 +19,13 @@ class JoinGameServiceTest {
     static {
         try {
             gameDAO = new SQLGameDAO();
+            authDAO = new SQLAuthDAO();
         } catch (DataAccessException e) {
             throw new RuntimeException(e);
         }
     }
 
     private static SQLAuthDAO authDAO;
-
-    static {
-        try {
-            authDAO = new SQLAuthDAO();
-        } catch (DataAccessException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     @BeforeEach
     void init(){

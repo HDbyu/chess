@@ -17,19 +17,11 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class LoginServiceTest {
     private static SQLUserDAO userDAO;
-
-    static {
-        try {
-            userDAO = new SQLUserDAO();
-        } catch (DataAccessException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     private static SQLAuthDAO authDAO;
 
     static {
         try {
+            userDAO = new SQLUserDAO();
             authDAO = new SQLAuthDAO();
         } catch (DataAccessException e) {
             throw new RuntimeException(e);

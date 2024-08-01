@@ -13,20 +13,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class CreateGameServiceTest {
-    private static SQLGameDAO gameDAO;
 
+    private static SQLGameDAO gameDAO;
+    private static SQLAuthDAO authDAO;
     static {
         try {
             gameDAO = new SQLGameDAO();
-        } catch (DataAccessException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private static SQLAuthDAO authDAO;
-
-    static {
-        try {
             authDAO = new SQLAuthDAO();
         } catch (DataAccessException e) {
             throw new RuntimeException(e);

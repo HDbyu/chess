@@ -10,30 +10,14 @@ import org.junit.jupiter.api.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ClearServiceTest {
     private static SQLUserDAO userDAO;
-
-    static {
-        try {
-            userDAO = new SQLUserDAO();
-        } catch (DataAccessException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
+    private static SQLAuthDAO authDAO;
     private static SQLGameDAO gameDAO;
 
     static {
         try {
-            gameDAO = new SQLGameDAO();
-        } catch (DataAccessException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private static SQLAuthDAO authDAO;
-
-    static {
-        try {
+            userDAO = new SQLUserDAO();
             authDAO = new SQLAuthDAO();
+            gameDAO = new SQLGameDAO();
         } catch (DataAccessException e) {
             throw new RuntimeException(e);
         }

@@ -15,20 +15,13 @@ class RegisterServiceTest {
     static {
         try {
             userDAO = new SQLUserDAO();
+            authDAO = new SQLAuthDAO();
         } catch (DataAccessException e) {
             throw new RuntimeException(e);
         }
     }
 
     private static SQLAuthDAO authDAO;
-
-    static {
-        try {
-            authDAO = new SQLAuthDAO();
-        } catch (DataAccessException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     @BeforeEach
     void init(){
