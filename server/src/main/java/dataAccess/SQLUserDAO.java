@@ -15,7 +15,7 @@ public class SQLUserDAO implements UserDAO{
         try (var conn = DatabaseManager.getConnection()) {
 
             try (var preparedStatement = conn.prepareStatement("INSERT INTO userData " +
-                    "(username, password, email) VALUES(u.username, u.password, u.email)")) {
+                    "(username, password, email) VALUES(?, ?, ?)")) {
                 preparedStatement.setString(1, u.username());
                 preparedStatement.setString(2, u.password());
                 preparedStatement.setString(3, u.email());
@@ -34,13 +34,10 @@ public class SQLUserDAO implements UserDAO{
                     "userData WHERE username =?")) {
                 preparedStatement.setString(1, name);
                 try (var rs = preparedStatement.executeQuery()) {
-                    String username = null;
-                    String password = null;
-                    String email = null;
                     if (rs.next()) {
-                        username = rs.getString("username");
-                        password = rs.getString("password");
-                        email = rs.getString("email");
+                        var username = rs.getString("username");
+                        var password = rs.getString("password");
+                        var email = rs.getString("email");
                         return new UserData(username, password, email);
                     }
                     else {

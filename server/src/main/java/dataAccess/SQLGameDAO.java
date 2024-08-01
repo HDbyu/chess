@@ -12,6 +12,7 @@ public class SQLGameDAO implements GameDAO{
     public SQLGameDAO() throws DataAccessException{
         DatabaseManager.configureDatabase(createStatements);
     }
+
     @Override
     public void clear() throws DataAccessException {
         try (var conn = DatabaseManager.getConnection()) {
@@ -29,12 +30,12 @@ public class SQLGameDAO implements GameDAO{
         try (var conn = DatabaseManager.getConnection()) {
              Gson gson = new Gson();
             try (var preparedStatement = conn.prepareStatement("INSERT INTO gameData " +
-                    "(gameID, whiteUsername, blackUsername, gameName, game) " +
-                    "VALUES(?, ?, ?, u.gameName, u.game)")) {
-                preparedStatement.setString(1, u.username());
-                preparedStatement.setString(2, u.password());
-                preparedStatement.setString(3, u.email());
-                gson.toJson(u.game());
+                    "(gameID, whiteUsername, blackUsername, gameName, game) VALUES(?, ?, ?, ?, ?)")) {
+                preparedStatement.setInt(1, u.gameID());
+                preparedStatement.setString(2, u.whiteUsername());
+                preparedStatement.setString(3, u.blackUsername());
+                preparedStatement.setString(4, u.gameName());
+                preparedStatement.setString(5, gson.toJson(u.game()));
                 preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {

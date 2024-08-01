@@ -26,7 +26,7 @@ public class SQLAuthDAO implements AuthDAO {
         try (var conn = DatabaseManager.getConnection()) {
 
             try (var preparedStatement = conn.prepareStatement("INSERT INTO authData (auth, username) " +
-                    "VALUES(u.authToken, u.username)")) {
+                    "VALUES(?, ?)")) {
                 preparedStatement.setString(1, u.authToken());
                 preparedStatement.setString(2, u.username());
                 preparedStatement.executeUpdate();
@@ -40,17 +40,18 @@ public class SQLAuthDAO implements AuthDAO {
     public AuthData getAuth(String token) throws DataAccessException {
         try (var conn = DatabaseManager.getConnection()) {
 
-            try (var preparedStatement = conn.prepareStatement("SELECT auth, username FROM authData WHERE auth = token")) {
+            try (var preparedStatement = conn.prepareStatement("SELECT auth, username FROM authData " +
+                    "WHERE auth = ?")) {
                 preparedStatement.setString(1, token);
                 try (var rs = preparedStatement.executeQuery()) {
-                    String auth = null;
-                    String username = null;
-                    while (rs.next()) {
-                        auth = rs.getString("auth");
-                        username = rs.getString("username");
-
+                    if (rs.next()) {
+                        var auth = rs.getString("auth");
+                        var username = rs.getString("username");
+                        return new AuthData(auth, username);
                     }
-                    return new AuthData(auth, username);
+                    else {
+                        return null;
+                    }
                 }
             }
         } catch (SQLException e) {
@@ -62,7 +63,8 @@ public class SQLAuthDAO implements AuthDAO {
     public void deleteAuth(String token) throws DataAccessException {
         try (var conn = DatabaseManager.getConnection()) {
 
-            try (var preparedStatement = conn.prepareStatement("DELETE FROM authData WHERE auth = token")) {
+            try (var preparedStatement = conn.prepareStatement("DELETE FROM authData WHERE auth = ?")) {
+                preparedStatement.setString(1, token);
                 preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {
