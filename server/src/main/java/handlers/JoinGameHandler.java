@@ -8,9 +8,9 @@ import spark.*;
 
 public class JoinGameHandler implements Route{
     private MemoryAuthDAO authDAO;
-    private MemoryGameDAO gameDAO;
+    private SQLGameDAO gameDAO;
 
-    public JoinGameHandler(MemoryAuthDAO authDAO, MemoryGameDAO gameDAO) {
+    public JoinGameHandler(MemoryAuthDAO authDAO, SQLGameDAO gameDAO) {
         this.authDAO = authDAO;
         this.gameDAO = gameDAO;
     }

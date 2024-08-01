@@ -1,10 +1,7 @@
 package service;
 
 import chess.ChessGame;
-import dataaccess.DataAccessException;
-import dataaccess.MemoryAuthDAO;
-import dataaccess.MemoryGameDAO;
-import dataaccess.MemoryUserDAO;
+import dataaccess.*;
 import model.AuthData;
 import model.GameData;
 import model.UserData;
@@ -12,8 +9,26 @@ import org.junit.jupiter.api.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ClearServiceTest {
-    private static MemoryUserDAO userDAO = new MemoryUserDAO();
-    private static MemoryGameDAO gameDAO = new MemoryGameDAO();
+    private static SQLUserDAO userDAO;
+
+    static {
+        try {
+            userDAO = new SQLUserDAO();
+        } catch (DataAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static SQLGameDAO gameDAO;
+
+    static {
+        try {
+            gameDAO = new SQLGameDAO();
+        } catch (DataAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private static MemoryAuthDAO authDAO = new MemoryAuthDAO();
 
     @BeforeAll

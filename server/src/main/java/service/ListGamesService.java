@@ -2,6 +2,7 @@ package service;
 
 import dataaccess.MemoryAuthDAO;
 import dataaccess.MemoryGameDAO;
+import dataaccess.SQLGameDAO;
 import model.AuthData;
 import model.GameData;
 import requestresult.*;
@@ -11,10 +12,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class ListGamesService {
-    private MemoryGameDAO gameDAO;
+    private SQLGameDAO gameDAO;
     private MemoryAuthDAO authDAO;
 
-    public ListGamesService(MemoryGameDAO gameDAO, MemoryAuthDAO authDAO) {
+    public ListGamesService(SQLGameDAO gameDAO, MemoryAuthDAO authDAO) {
         this.gameDAO = gameDAO;
         this.authDAO = authDAO;
     }

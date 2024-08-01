@@ -8,10 +8,10 @@ import requestresult.*;
 import java.util.Random;
 
 public class JoinGameService {
-    private MemoryGameDAO gameDAO;
+    private SQLGameDAO gameDAO;
     private MemoryAuthDAO authDAO;
 
-    public JoinGameService(MemoryGameDAO gameDAO, MemoryAuthDAO authDAO) {
+    public JoinGameService(SQLGameDAO gameDAO, MemoryAuthDAO authDAO) {
         this.gameDAO = gameDAO;
         this.authDAO = authDAO;
     }

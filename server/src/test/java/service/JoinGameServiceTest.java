@@ -1,10 +1,7 @@
 package service;
 
 import chess.ChessGame;
-import dataaccess.DataAccessException;
-import dataaccess.MemoryAuthDAO;
-import dataaccess.MemoryGameDAO;
-import dataaccess.MemoryUserDAO;
+import dataaccess.*;
 import model.AuthData;
 import model.GameData;
 import org.junit.jupiter.api.*;
@@ -17,13 +14,22 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class JoinGameServiceTest {
-    private static MemoryGameDAO gameDAO = new MemoryGameDAO();
+    private static SQLGameDAO gameDAO;
+
+    static {
+        try {
+            gameDAO = new SQLGameDAO();
+        } catch (DataAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private static MemoryAuthDAO authDAO = new MemoryAuthDAO();
 
     @BeforeEach
     void init(){
         try {
-            new ClearService(gameDAO, authDAO, new MemoryUserDAO()).clear();
+            new ClearService(gameDAO, authDAO, new SQLUserDAO()).clear();
             authDAO.createAuth(new AuthData("boy", "brass"));
             gameDAO.createGame(new GameData(231, "bro", null, "cool", new ChessGame()));
         } catch (Exception ignored) {}

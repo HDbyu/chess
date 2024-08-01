@@ -1,10 +1,7 @@
 package service;
 
 import chess.ChessGame;
-import dataaccess.DataAccessException;
-import dataaccess.MemoryAuthDAO;
-import dataaccess.MemoryGameDAO;
-import dataaccess.MemoryUserDAO;
+import dataaccess.*;
 import model.AuthData;
 import model.GameData;
 import model.UserData;
@@ -16,7 +13,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class CreateGameServiceTest {
-    private static MemoryGameDAO gameDAO = new MemoryGameDAO();
+    private static SQLGameDAO gameDAO;
+
+    static {
+        try {
+            gameDAO = new SQLGameDAO();
+        } catch (DataAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private static MemoryAuthDAO authDAO = new MemoryAuthDAO();
 
     @BeforeAll
@@ -39,7 +45,7 @@ class CreateGameServiceTest {
     @Order(2)
     @DisplayName("Create Game Fail Test")
     void createGameFail() throws DataAccessException {
-        new ClearService(gameDAO, authDAO, new MemoryUserDAO()).clear();
+        new ClearService(gameDAO, authDAO, new SQLUserDAO()).clear();
         CreateGameService service = new CreateGameService(gameDAO, authDAO);
         CreateGameResult game = service.createGame(new CreateGameRequest("game", ""));
         Assertions.assertEquals("Error: unauthorized", game.message(), "No Data provided to create game");

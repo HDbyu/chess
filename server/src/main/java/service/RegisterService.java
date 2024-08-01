@@ -3,6 +3,7 @@ package service;
 import dataaccess.MemoryAuthDAO;
 import dataaccess.MemoryGameDAO;
 import dataaccess.MemoryUserDAO;
+import dataaccess.SQLUserDAO;
 import model.AuthData;
 import model.UserData;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -12,10 +13,10 @@ import requestresult.RegisterResult;
 import java.util.UUID;
 
 public class RegisterService {
-    private MemoryUserDAO userDAO;
+    private SQLUserDAO userDAO;
     private MemoryAuthDAO authDAO;
 
-    public RegisterService(MemoryAuthDAO authDAO, MemoryUserDAO userDAO) {
+    public RegisterService(MemoryAuthDAO authDAO, SQLUserDAO userDAO) {
         this.authDAO = authDAO;
         this.userDAO = userDAO;
     }

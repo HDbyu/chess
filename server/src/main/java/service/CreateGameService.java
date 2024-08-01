@@ -11,10 +11,10 @@ import java.util.Random;
 import static java.lang.Math.abs;
 
 public class CreateGameService {
-    private MemoryGameDAO gameDAO;
+    private SQLGameDAO gameDAO;
     private MemoryAuthDAO authDAO;
 
-    public CreateGameService(MemoryGameDAO gameDAO, MemoryAuthDAO authDAO) {
+    public CreateGameService(SQLGameDAO gameDAO, MemoryAuthDAO authDAO) {
         this.gameDAO = gameDAO;
         this.authDAO = authDAO;
     }

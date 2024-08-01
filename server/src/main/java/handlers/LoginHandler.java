@@ -3,6 +3,7 @@ package handlers;
 import com.google.gson.Gson;
 import dataaccess.MemoryAuthDAO;
 import dataaccess.MemoryUserDAO;
+import dataaccess.SQLUserDAO;
 import requestresult.*;
 import service.LoginService;
 import spark.Request;
@@ -10,10 +11,10 @@ import spark.Response;
 import spark.Route;
 
 public class LoginHandler implements Route {
-    private MemoryUserDAO userDAO;
+    private SQLUserDAO userDAO;
     private MemoryAuthDAO authDAO;
 
-    public LoginHandler(MemoryAuthDAO authDAO, MemoryUserDAO userDAO) {
+    public LoginHandler(MemoryAuthDAO authDAO, SQLUserDAO userDAO) {
         this.authDAO = authDAO;
         this.userDAO = userDAO;
     }

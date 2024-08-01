@@ -1,9 +1,6 @@
 package service;
 
-import dataaccess.DataAccessException;
-import dataaccess.MemoryAuthDAO;
-import dataaccess.MemoryGameDAO;
-import dataaccess.MemoryUserDAO;
+import dataaccess.*;
 import model.AuthData;
 import model.UserData;
 import org.junit.jupiter.api.*;
@@ -13,13 +10,22 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class RegisterServiceTest {
-    private static MemoryUserDAO userDAO = new MemoryUserDAO();
+    private static SQLUserDAO userDAO;
+
+    static {
+        try {
+            userDAO = new SQLUserDAO();
+        } catch (DataAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private static MemoryAuthDAO authDAO = new MemoryAuthDAO();
 
     @BeforeEach
     void init(){
         try {
-            new ClearService(new MemoryGameDAO(), authDAO, userDAO).clear();
+            new ClearService(new SQLGameDAO(), authDAO, userDAO).clear();
             userDAO.createUser(new UserData("boy", "goo", "@boyo"));
         } catch (Exception ignored) {}
     }

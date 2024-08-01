@@ -1,17 +1,20 @@
 package server;
 
+import dataaccess.*;
 import handlers.*;
-import dataaccess.MemoryAuthDAO;
-import dataaccess.MemoryGameDAO;
-import dataaccess.MemoryUserDAO;
 import spark.*;
 
 public class Server {
-    private MemoryUserDAO userDAO = new MemoryUserDAO();
-    private MemoryGameDAO gameDAO = new MemoryGameDAO();
+    private SQLUserDAO userDAO;
+    private SQLGameDAO gameDAO;
     private MemoryAuthDAO authDAO = new MemoryAuthDAO();
     public Server() {
-
+        try {
+            userDAO = new SQLUserDAO();
+            gameDAO = new SQLGameDAO();
+        } catch (DataAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public int run(int desiredPort) {
