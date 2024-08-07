@@ -60,4 +60,22 @@ public class ServerFacade {
             return new Gson().fromJson(inputStreamReader, RegisterResult.class);
         }
     }
+
+    public ListGamesResult listGames(String auth) throws Exception {
+        // Specify the desired endpoint
+        URI uri = new URI("http://localhost:" + port +"/game");
+        HttpURLConnection http = (HttpURLConnection) uri.toURL().openConnection();
+        http.setRequestMethod("GET");
+        http.setDoOutput(true);
+        http.addRequestProperty("Authorization", auth);
+
+        // Make the request
+        http.connect();
+
+        // Output the response body
+        try (InputStream respBody = http.getInputStream()) {
+            InputStreamReader inputStreamReader = new InputStreamReader(respBody);
+            return new Gson().fromJson(inputStreamReader, ListGamesResult.class);
+        }
+    }
 }

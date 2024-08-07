@@ -19,9 +19,15 @@ public class ChessClient {
             }
             else if (line.equals("login")) {
                 boolean logedIn = login();
+                if (logedIn) {
+                    run = new PostLogin(auth).run();
+                }
             }
             else if (line.equals("register")) {
                 boolean logedIn = register();
+                if (logedIn) {
+                    run = new PostLogin(auth).run();
+                }
             }
             else if (line.equals("quit")) {
                 run = false;
@@ -70,7 +76,7 @@ public class ChessClient {
             System.out.println("Logged in as " + result.username());
             auth = result.authToken();
         } catch (Exception e) {
-            System.out.println("Login failed");
+            System.out.println("Register failed");
             return false;
         }
         return true;
