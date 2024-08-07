@@ -78,4 +78,27 @@ public class ServerFacade {
             return new Gson().fromJson(inputStreamReader, ListGamesResult.class);
         }
     }
+
+    public CreateGameResult createGame(String auth, String gameName) throws Exception {
+        // Specify the desired endpoint
+        URI uri = new URI("http://localhost:" + port +"/game");
+        HttpURLConnection http = (HttpURLConnection) uri.toURL().openConnection();
+        http.setRequestMethod("POST");
+        http.setDoOutput(true);
+        http.addRequestProperty("Authorization", auth);
+        var body = new CreateGameRequest(gameName, auth);
+        try (var outputStream = http.getOutputStream()) {
+            var jsonBody = new Gson().toJson(body);
+            outputStream.write(jsonBody.getBytes());
+        }
+
+        // Make the request
+        http.connect();
+
+        // Output the response body
+        try (InputStream respBody = http.getInputStream()) {
+            InputStreamReader inputStreamReader = new InputStreamReader(respBody);
+            return new Gson().fromJson(inputStreamReader, CreateGameResult.class);
+        }
+    }
 }

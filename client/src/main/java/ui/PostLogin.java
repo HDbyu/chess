@@ -30,6 +30,9 @@ public class PostLogin {
             else if (line.equals("list")) {
                 list();
             }
+            else if (line.equals("create")) {
+                create();
+            }
             else {
                 System.out.printf("unrecognized command, to get a list of commands type 'help' %n");
             }
@@ -51,6 +54,18 @@ public class PostLogin {
         try {
             ListGamesResult result = new ServerFacade(8080).listGames(auth);
             System.out.println(result.games().size());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void create() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.printf("Please enter the name of the game: %n >>> ");
+        String name = scanner.nextLine();
+        try {
+            CreateGameResult result = new ServerFacade(8080).createGame(auth, name);
+            System.out.println("Game created with ID " + result.gameID());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
