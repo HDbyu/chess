@@ -5,11 +5,14 @@ import model.GameData;
 import requestresult.*;
 import serveraccess.ServerFacade;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class PostLogin {
 
     private String auth;
+    private Map<Integer, GameData> games = new HashMap<>();
 
     public PostLogin(String auth) {
         this.auth = auth;
@@ -27,6 +30,7 @@ public class PostLogin {
             else if (line.equals("quit")) {
                 run = false;
                 System.out.printf("Exiting program. Thanks for playing%n");
+                logout();
                 return false;
             }
             else if (line.equals("list")) {
@@ -41,7 +45,10 @@ public class PostLogin {
             else if (line.equals("logout")) {
                 logout();
                 run = false;
-                System.out.printf("Logging out %n");
+                System.out.printf("Logged out %n");
+            }
+            else if (line.equals("observe")) {
+                observe();
             }
             else {
                 System.out.printf("unrecognized command, to get a list of commands type 'help' %n");
@@ -54,19 +61,20 @@ public class PostLogin {
         System.out.printf("create <NAME> - creates a new game %n" +
                 "list - Lists all available games %n" +
                 "join <ID> [WHITE|BLACK] - adds you to a game %n" +
+                "observe <ID> - allows you to watch a game %n" +
                 "logout - logs you out %n" +
                 "quit - exits the program %n" +
                 "help - get list of commands %n");
     }
 
     private void list() {
-        Scanner scanner = new Scanner(System.in);
         try {
             ListGamesResult result = new ServerFacade(8080).listGames(auth);
             for (GameData game : result.games()) {
                 System.out.printf(game.gameName() + ":" + game.gameID() +
                         ", Black player: " + game.blackUsername() +
                         ", White player: " + game.whiteUsername() + "%n");
+                games.put(game.gameID(), game);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -109,6 +117,17 @@ public class PostLogin {
             LogoutResult result = new ServerFacade(8080).logout(auth);
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    private void observe() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.printf("Please enter the game ID: %n >>> ");
+        int gameID = Integer.parseInt(scanner.nextLine());
+        try {
+            System.out.printf(games.get(gameID).game().toString() + "%n");
+        } catch (Exception e) {
+            System.out.println("Wrong game ID, please check your game ID");
         }
     }
 }
