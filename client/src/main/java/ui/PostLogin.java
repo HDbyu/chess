@@ -1,5 +1,7 @@
 package ui;
 
+import chess.ChessGame;
+import model.GameData;
 import requestresult.*;
 import serveraccess.ServerFacade;
 
@@ -33,6 +35,9 @@ public class PostLogin {
             else if (line.equals("create")) {
                 create();
             }
+            else if (line.equals("join")) {
+                join();
+            }
             else {
                 System.out.printf("unrecognized command, to get a list of commands type 'help' %n");
             }
@@ -46,7 +51,7 @@ public class PostLogin {
                 "join <ID> [WHITE|BLACK] - adds you to a game %n" +
                 "logout - logs you out %n" +
                 "quit - exits the program %n" +
-                "help - get list of commands");
+                "help - get list of commands %n");
     }
 
     private void list() {
@@ -54,6 +59,9 @@ public class PostLogin {
         try {
             ListGamesResult result = new ServerFacade(8080).listGames(auth);
             System.out.println(result.games().size());
+            for (GameData game : result.games()) {
+                System.out.printf(game.gameName() + ":" + game.gameID() + "%n");
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -65,7 +73,27 @@ public class PostLogin {
         String name = scanner.nextLine();
         try {
             CreateGameResult result = new ServerFacade(8080).createGame(auth, name);
-            System.out.println("Game created with ID " + result.gameID());
+            System.out.println("Game created with ID " + result.gameID() + "%n");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void join() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.printf("Please enter the game ID: %n >>> ");
+        int gameID = Integer.parseInt(scanner.nextLine());
+        System.out.printf("Please choose black (b) or white (w): %n >>> ");
+        ChessGame.TeamColor color = null;
+        if (scanner.nextLine().equals("b")) {
+            color = ChessGame.TeamColor.BLACK;
+        }
+        else if (scanner.nextLine().equals("w")) {
+            color = ChessGame.TeamColor.WHITE;
+        }
+        try {
+            JoinGameResult result = new ServerFacade(8080).joinGame(auth, color, gameID);
+            System.out.printf("Joined game %n");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

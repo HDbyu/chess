@@ -1,5 +1,6 @@
 package serveraccess;
 
+import chess.ChessGame;
 import com.google.gson.Gson;
 import requestresult.LoginRequest;
 import requestresult.LoginResult;
@@ -99,6 +100,44 @@ public class ServerFacade {
         try (InputStream respBody = http.getInputStream()) {
             InputStreamReader inputStreamReader = new InputStreamReader(respBody);
             return new Gson().fromJson(inputStreamReader, CreateGameResult.class);
+        }
+    }
+
+    public JoinGameResult joinGame(String auth, ChessGame.TeamColor color, int gameID) throws Exception {
+        // Specify the desired endpoint
+        URI uri = new URI("http://localhost:" + port +"/game");
+        HttpURLConnection http = (HttpURLConnection) uri.toURL().openConnection();
+        http.setRequestMethod("PUT");
+        http.setDoOutput(true);
+        http.addRequestProperty("Authorization", auth);
+        var body = new JoinGameRequest(color, gameID, auth);
+        try (var outputStream = http.getOutputStream()) {
+            var jsonBody = new Gson().toJson(body);
+            outputStream.write(jsonBody.getBytes());
+        }
+        http.connect();
+
+        // Output the response body
+        try (InputStream respBody = http.getInputStream()) {
+            InputStreamReader inputStreamReader = new InputStreamReader(respBody);
+            return new Gson().fromJson(inputStreamReader, JoinGameResult.class);
+        }
+    }
+
+    public LogoutResult logout(String auth) throws Exception {
+        // Specify the desired endpoint
+        URI uri = new URI("http://localhost:" + port +"/session");
+        HttpURLConnection http = (HttpURLConnection) uri.toURL().openConnection();
+        http.setRequestMethod("DELETE");
+        http.setDoOutput(true);
+        http.addRequestProperty("Authorization", auth);
+
+        http.connect();
+
+        // Output the response body
+        try (InputStream respBody = http.getInputStream()) {
+            InputStreamReader inputStreamReader = new InputStreamReader(respBody);
+            return new Gson().fromJson(inputStreamReader, LogoutResult.class);
         }
     }
 }
