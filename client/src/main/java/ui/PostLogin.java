@@ -38,6 +38,11 @@ public class PostLogin {
             else if (line.equals("join")) {
                 join();
             }
+            else if (line.equals("logout")) {
+                logout();
+                run = false;
+                System.out.printf("Logging out %n");
+            }
             else {
                 System.out.printf("unrecognized command, to get a list of commands type 'help' %n");
             }
@@ -58,9 +63,10 @@ public class PostLogin {
         Scanner scanner = new Scanner(System.in);
         try {
             ListGamesResult result = new ServerFacade(8080).listGames(auth);
-            System.out.println(result.games().size());
             for (GameData game : result.games()) {
-                System.out.printf(game.gameName() + ":" + game.gameID() + "%n");
+                System.out.printf(game.gameName() + ":" + game.gameID() +
+                        ", Black player: " + game.blackUsername() +
+                        ", White player: " + game.whiteUsername() + "%n");
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -94,6 +100,13 @@ public class PostLogin {
         try {
             JoinGameResult result = new ServerFacade(8080).joinGame(auth, color, gameID);
             System.out.printf("Joined game %n");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    private void logout() {
+        try {
+            LogoutResult result = new ServerFacade(8080).logout(auth);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
