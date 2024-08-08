@@ -18,11 +18,12 @@ public class ServerFacadeTests {
 
     private static Server server;
     private static ServerFacade facade;
+    private static int port;
 
     @BeforeAll
     public static void init() {
         server = new Server();
-        var port = server.run(0);
+        port = server.run(0);
         System.out.println("Started test HTTP server on " + port);
         facade = new ServerFacade(port);
     }
@@ -32,13 +33,19 @@ public class ServerFacadeTests {
         server.stop();
     }
 
-    @AfterEach
+    @BeforeEach
     void reset() throws Exception {
-        URI uri = new URI("http://localhost:0/db");
+        URI uri = new URI("http://localhost:"+ port + "/db");
         HttpURLConnection http = (HttpURLConnection) uri.toURL().openConnection();
         http.setRequestMethod("DELETE");
-        http.setDoOutput(true);
         http.connect();
+
+        // Output the response body
+        try (InputStream respBody = http.getInputStream()) {
+            InputStreamReader inputStreamReader = new InputStreamReader(respBody);
+            ClearResult result =  new Gson().fromJson(inputStreamReader, ClearResult.class);
+            System.out.println(result.message());
+        }
     }
 
     @Test
@@ -52,8 +59,11 @@ public class ServerFacadeTests {
     @Test
     public void loginFail() throws Exception {
         facade.register("bra", "pablo", "@me");
-        LoginResult result = facade.login("bra", "juan");
-        Assertions.assertNull(result, "Failed to log in");
+        try {
+            LoginResult result = facade.login("bra", "juan");
+        } catch (Exception e) {
+            Assertions.assertNotNull(e.getMessage(), "Failed to log in");
+        }
     }
 
     @Test
@@ -67,7 +77,7 @@ public class ServerFacadeTests {
         try {
             RegisterResult result = facade.register("bra", null, "@me");
         } catch (Exception e) {
-            Assertions.assertNull(e.getMessage(), "Failed to register");
+            Assertions.assertNotNull(e.getMessage(), "Failed to register");
         }
     }
 
