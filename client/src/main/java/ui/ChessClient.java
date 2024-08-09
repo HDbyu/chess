@@ -54,8 +54,13 @@ public class ChessClient {
         String password = scanner.nextLine();
         try {
             LoginResult result = new ServerFacade(8080).login(username, password);
-            System.out.println("Logged in as " + result.username());
-            auth = result.authToken();
+            if (result.message() == null) {
+                System.out.println("Logged in as " + result.username());
+                auth = result.authToken();
+            } else {
+                errorPrint(result.message());
+                return false;
+            }
         } catch (Exception e) {
             System.out.println("Login failed");
             return false;
@@ -73,12 +78,35 @@ public class ChessClient {
         String email = scanner.nextLine();
         try {
             RegisterResult result = new ServerFacade(8080).register(username, password, email);
-            System.out.println("Logged in as " + result.username());
-            auth = result.authToken();
+            if (result.message() == null) {
+                System.out.println("Logged in as " + result.username());
+                auth = result.authToken();
+            } else {
+                errorPrint(result.message());
+                return false;
+            }
         } catch (Exception e) {
             System.out.println("Register failed");
             return false;
         }
         return true;
     }
+
+    public void errorPrint(String code) {
+        switch (code) {
+            case "400":
+                System.out.println("bad request");
+                break;
+            case "401":
+                System.out.println("unauthorized");
+                break;
+            case "403":
+                System.out.println("already taken");
+                break;
+            case "500":
+                System.out.println("server error");
+                break;
+        }
+    }
+
 }

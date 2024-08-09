@@ -70,11 +70,17 @@ public class PostLogin {
     private void list() {
         try {
             ListGamesResult result = new ServerFacade(8080).listGames(auth);
-            for (GameData game : result.games()) {
-                System.out.printf(game.gameName() + ":" + game.gameID() +
-                        ", Black player: " + game.blackUsername() +
-                        ", White player: " + game.whiteUsername() + "%n");
-                games.put(game.gameID(), game);
+            if (result.message() == null) {
+                games.clear();
+                for (GameData game : result.games()) {
+                    int num = games.size() + 1;
+                    games.put(num, game);
+                    System.out.printf(num + ":" + game.gameName() +
+                            ", Black player: " + game.blackUsername() +
+                            ", White player: " + game.whiteUsername() + "%n");
+                }
+            } else {
+                new ChessClient().errorPrint(result.message());
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -87,7 +93,11 @@ public class PostLogin {
         String name = scanner.nextLine();
         try {
             CreateGameResult result = new ServerFacade(8080).createGame(auth, name);
-            System.out.println("Game created with ID " + result.gameID() + "%n");
+            if (result.message() == null) {
+                System.out.printf("Game created %n");
+            } else {
+                new ChessClient().errorPrint(result.message());
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -95,19 +105,33 @@ public class PostLogin {
 
     private void join() {
         Scanner scanner = new Scanner(System.in);
-        System.out.printf("Please enter the game ID: %n >>> ");
-        int gameID = Integer.parseInt(scanner.nextLine());
+        System.out.printf("Please enter the game number: %n >>> ");
+        int num = scanner.nextInt();
+        scanner.nextLine();
+        int gameID;
+        if (games.containsKey(num)) {
+            gameID = games.get(num).gameID();
+        } else {
+            System.out.println("Invalid game number");
+            return;
+        }
         System.out.printf("Please choose black (b) or white (w): %n >>> ");
         ChessGame.TeamColor color = null;
-        if (scanner.nextLine().equals("b")) {
+        String answer = scanner.nextLine();
+        if (answer.equals("b")) {
             color = ChessGame.TeamColor.BLACK;
         }
-        else if (scanner.nextLine().equals("w")) {
+        else if (answer.equals("w")) {
             color = ChessGame.TeamColor.WHITE;
         }
         try {
             JoinGameResult result = new ServerFacade(8080).joinGame(auth, color, gameID);
-            System.out.printf("Joined game %n");
+            if (result.message() == null) {
+                System.out.printf("Joined game %n");
+                new Gameplay().run(color, games.get(num));
+            } else {
+                new ChessClient().errorPrint(result.message());
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -115,6 +139,9 @@ public class PostLogin {
     private void logout() {
         try {
             LogoutResult result = new ServerFacade(8080).logout(auth);
+            if (result.message() != null) {
+                new ChessClient().errorPrint(result.message());
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -125,7 +152,7 @@ public class PostLogin {
         System.out.printf("Please enter the game ID: %n >>> ");
         int gameID = Integer.parseInt(scanner.nextLine());
         try {
-            System.out.printf(games.get(gameID).game().toString() + "%n");
+            System.out.printf(games.get(gameID).toString() + "%n");
         } catch (Exception e) {
             System.out.println("Wrong game ID, please check your game ID");
         }

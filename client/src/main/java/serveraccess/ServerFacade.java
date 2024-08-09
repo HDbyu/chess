@@ -37,6 +37,9 @@ public class ServerFacade {
         try (InputStream respBody = http.getInputStream()) {
             InputStreamReader inputStreamReader = new InputStreamReader(respBody);
             return new Gson().fromJson(inputStreamReader, LoginResult.class);
+        } catch (Exception e) {
+            int statusCode = http.getResponseCode();
+            return new LoginResult(null, null, Integer.toString(statusCode));
         }
     }
 
@@ -59,6 +62,9 @@ public class ServerFacade {
         try (InputStream respBody = http.getInputStream()) {
             InputStreamReader inputStreamReader = new InputStreamReader(respBody);
             return new Gson().fromJson(inputStreamReader, RegisterResult.class);
+        } catch (Exception e) {
+            int statusCode = http.getResponseCode();
+            return new RegisterResult(null, null, Integer.toString(statusCode));
         }
     }
 
@@ -77,6 +83,9 @@ public class ServerFacade {
         try (InputStream respBody = http.getInputStream()) {
             InputStreamReader inputStreamReader = new InputStreamReader(respBody);
             return new Gson().fromJson(inputStreamReader, ListGamesResult.class);
+        } catch (Exception e) {
+            int statusCode = http.getResponseCode();
+            return new ListGamesResult(null, Integer.toString(statusCode));
         }
     }
 
@@ -100,6 +109,9 @@ public class ServerFacade {
         try (InputStream respBody = http.getInputStream()) {
             InputStreamReader inputStreamReader = new InputStreamReader(respBody);
             return new Gson().fromJson(inputStreamReader, CreateGameResult.class);
+        } catch (Exception e) {
+            int statusCode = http.getResponseCode();
+            return new CreateGameResult(null, Integer.toString(statusCode));
         }
     }
 
@@ -121,6 +133,9 @@ public class ServerFacade {
         try (InputStream respBody = http.getInputStream()) {
             InputStreamReader inputStreamReader = new InputStreamReader(respBody);
             return new Gson().fromJson(inputStreamReader, JoinGameResult.class);
+        } catch (Exception e) {
+            int statusCode = http.getResponseCode();
+            return new JoinGameResult(Integer.toString(statusCode));
         }
     }
 
@@ -138,6 +153,9 @@ public class ServerFacade {
         try (InputStream respBody = http.getInputStream()) {
             InputStreamReader inputStreamReader = new InputStreamReader(respBody);
             return new Gson().fromJson(inputStreamReader, LogoutResult.class);
+        }catch (Exception e) {
+            int statusCode = http.getResponseCode();
+            return new LogoutResult(Integer.toString(statusCode));
         }
     }
 }
