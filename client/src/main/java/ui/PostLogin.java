@@ -106,7 +106,13 @@ public class PostLogin {
     private void join() {
         Scanner scanner = new Scanner(System.in);
         System.out.printf("Please enter the game number: %n >>> ");
-        int num = scanner.nextInt();
+        int num;
+        try {
+            num = scanner.nextInt();
+        } catch (Exception e) {
+            System.out.println("Invalid game number");
+            return;
+        }
         scanner.nextLine();
         int gameID;
         if (games.containsKey(num)) {
@@ -123,6 +129,10 @@ public class PostLogin {
         }
         else if (answer.equals("w")) {
             color = ChessGame.TeamColor.WHITE;
+        }
+        else {
+            System.out.println("Invalid input");
+            return;
         }
         try {
             JoinGameResult result = new ServerFacade(8080).joinGame(auth, color, gameID);
@@ -149,7 +159,7 @@ public class PostLogin {
 
     private void observe() {
         Scanner scanner = new Scanner(System.in);
-        System.out.printf("Please enter the game ID: %n >>> ");
+        System.out.printf("Please enter the game number: %n >>> ");
         int gameID = Integer.parseInt(scanner.nextLine());
         try {
             System.out.printf(games.get(gameID).toString() + "%n");

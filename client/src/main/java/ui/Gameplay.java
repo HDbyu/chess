@@ -121,8 +121,8 @@ public class Gameplay {
         System.out.printf("%n");
         for (int i = 7; i >= 0; i--) {
 
-            for (int j = 7; j >= 0; j--) {
-                if (j == 7) {
+            for (int j = 0; j < 8; j++) {
+                if (j == 0) {
                     System.out.print(SET_BG_COLOR_LIGHT_GREY);
                     System.out.print(SET_TEXT_COLOR_BLACK);
                     System.out.print(" " + (i + 1) + " ");
@@ -163,7 +163,7 @@ public class Gameplay {
                 } else {
                     System.out.print("   ");
                 }
-                if (j == 0) {
+                if (j == 7) {
                     System.out.print(SET_BG_COLOR_LIGHT_GREY);
                     System.out.print(SET_TEXT_COLOR_BLACK);
                     System.out.print(" " + (i + 1) + " ");
