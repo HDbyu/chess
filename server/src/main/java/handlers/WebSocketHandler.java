@@ -1,0 +1,25 @@
+package handlers;
+
+import com.google.gson.Gson;
+import org.eclipse.jetty.websocket.api.Session;
+import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
+import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
+import org.eclipse.jetty.websocket.api.annotations.WebSocket;
+import websocket.commands.UserGameCommand;
+
+@WebSocket
+public class WebSocketHandler {
+
+    @OnWebSocketMessage
+    public void onMessage(Session session, String message) {
+        Gson gson = new Gson();
+        UserGameCommand gameCommand = gson.fromJson(message, UserGameCommand.class);
+        if (gameCommand.getCommandType() == UserGameCommand.CommandType.MAKE_MOVE) {
+            gameCommand = gson.fromJson(message, UserGameCommand.class);
+        }
+    }
+
+    private void connect() {
+
+    }
+}

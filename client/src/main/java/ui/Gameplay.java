@@ -16,6 +16,8 @@ public class Gameplay {
     }
 
     public void run(ChessGame.TeamColor color, GameData game) {
+
+
         board = game.game().getBoard();
         System.out.print(SET_BG_COLOR_LIGHT_GREY);
         System.out.print(SET_TEXT_COLOR_BLACK);
