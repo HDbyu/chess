@@ -56,6 +56,8 @@ public class WebSocketHandler {
                     makeMove(auth.username(), game, session, moveCommand.getMove());
                 } else if (gameCommand.getCommandType() == UserGameCommand.CommandType.LEAVE) {
                     leave(auth.username(), game, session);
+                } else if (gameCommand.getCommandType() == UserGameCommand.CommandType.RESIGN) {
+                    resign(auth.username(), game, session);
                 }
             } else {
                 ErrorMessage errorMessage = new ErrorMessage("Error: No game found");
@@ -90,6 +92,11 @@ public class WebSocketHandler {
 
     private void makeMove(String username, GameData game, Session session, ChessMove move) throws IOException, DataAccessException {
         Gson gson = new Gson();
+        if (!game.game().getActive()) {
+            ErrorMessage errorMessage = new ErrorMessage("Error: Game is not active");
+            session.getRemote().sendString(gson.toJson(errorMessage));
+            return;
+        }
         ChessGame.TeamColor team;
         if (Objects.equals(username, game.blackUsername())) {
             team = ChessGame.TeamColor.BLACK;
@@ -110,6 +117,7 @@ public class WebSocketHandler {
         } catch (Exception e) {
             ErrorMessage errorMessage = new ErrorMessage("Error: Invalid move");
             session.getRemote().sendString(gson.toJson(errorMessage));
+            return;
         }
         gameDAO.updateGame(game);
         for (Session u : sessions.getSessionsForGame(game.gameID())) {
@@ -164,6 +172,26 @@ public class WebSocketHandler {
         sessions.removeSession(game.gameID(), session);
         Gson gson = new Gson();
         NotificationMessage notification = new NotificationMessage(username + " has left the game");
+        for (Session u : sessions.getSessionsForGame(game.gameID())) {
+            u.getRemote().sendString(gson.toJson(notification));
+        }
+    }
+
+    private void resign(String username, GameData game, Session session) throws IOException, DataAccessException {
+        Gson gson = new Gson();
+        if (!game.game().getActive()) {
+            ErrorMessage errorMessage = new ErrorMessage("Error: Invalid command");
+            session.getRemote().sendString(gson.toJson(errorMessage));
+            return;
+        }
+        if (!Objects.equals(username, game.whiteUsername()) && !Objects.equals(username, game.blackUsername())) {
+            ErrorMessage errorMessage = new ErrorMessage("Error: Invalid command");
+            session.getRemote().sendString(gson.toJson(errorMessage));
+            return;
+        }
+        game.game().setActive(false);
+        gameDAO.updateGame(game);
+        NotificationMessage notification = new NotificationMessage(username + " has resigned");
         for (Session u : sessions.getSessionsForGame(game.gameID())) {
             u.getRemote().sendString(gson.toJson(notification));
         }

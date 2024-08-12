@@ -16,6 +16,16 @@ public class ChessGame {
     ChessBoard myBoard = new ChessBoard();
     ChessBoard safeBoard = new ChessBoard();
 
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
+    Boolean isActive = true;
+
     public ChessGame() {
         myBoard.resetBoard();
     }
