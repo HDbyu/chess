@@ -33,6 +33,20 @@ public class ChessPosition {
         return colData;
     }
 
+    public String getColumnLetter() {
+        return switch (colData) {
+            case 1 -> "a";
+            case 2 -> "b";
+            case 3 -> "c";
+            case 4 -> "d";
+            case 5 -> "e";
+            case 6 -> "f";
+            case 7 -> "g";
+            case 8 -> "h";
+            default -> null;
+        };
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {return true;}
