@@ -9,15 +9,19 @@ public class WebSocketSessions {
     public WebSocketSessions() {}
 
     public void addSession(Integer gameID, Session session) {
-        Set<Session> sessions = sessionMap.get(gameID);
-        sessions.add(session);
-        sessionMap.replace(gameID, sessions);
+        if (sessionMap.containsKey(gameID)) {
+            Set<Session> sessions = sessionMap.get(gameID);
+            sessions.add(session);
+        } else {
+            Set<Session> sessions = new HashSet<>();
+            sessions.add(session);
+            sessionMap.put(gameID, sessions);
+        }
     }
 
     public void removeSession(Integer gameID, Session session) {
         Set<Session> sessions = sessionMap.get(gameID);
         sessions.remove(session);
-        sessionMap.replace(gameID, sessions);
     }
 
     public Set<Session> getSessionsForGame(Integer gameID) {
