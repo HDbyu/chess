@@ -5,20 +5,33 @@ import chess.ChessGame;
 import chess.ChessPiece;
 import chess.ChessPosition;
 import model.GameData;
+import websocketaccess.GameHandler;
+import websocketaccess.WebSocketFacade;
 
 import static ui.EscapeSequences.*;
 
-public class Gameplay {
+public class Gameplay implements GameHandler {
 
     private ChessBoard board;
+    private ChessGame.TeamColor color;
     public Gameplay() {
 
     }
 
     public void run(ChessGame.TeamColor color, GameData game) {
+        this.color = color;
+        try {
+            new WebSocketFacade("localhost:8080", this);
+        } catch (Exception e) {
+            System.out.println("Error: failed to connect to websocket");
+        }
 
 
-        board = game.game().getBoard();
+    }
+
+    @Override
+    public void updateGame(ChessGame game) {
+        board = game.getBoard();
         System.out.print(SET_BG_COLOR_LIGHT_GREY);
         System.out.print(SET_TEXT_COLOR_BLACK);
         System.out.print("   ");
@@ -189,5 +202,15 @@ public class Gameplay {
         System.out.print(RESET_BG_COLOR);
         System.out.print(RESET_TEXT_COLOR);
         System.out.printf("%n");
+    }
+
+    @Override
+    public void printNotification(String message) {
+
+    }
+
+    @Override
+    public void printError(String message) {
+
     }
 }
