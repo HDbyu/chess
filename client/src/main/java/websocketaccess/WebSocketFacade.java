@@ -7,16 +7,18 @@ import websocket.messages.LoadGameMessage;
 import websocket.messages.NotificationMessage;
 import websocket.messages.ServerMessage;
 
-import javax.websocket.ContainerProvider;
-import javax.websocket.MessageHandler;
-import javax.websocket.Session;
-import javax.websocket.WebSocketContainer;
+import javax.websocket.*;
 import java.io.IOException;
 import java.net.URI;
 
-public class WebSocketFacade {
+public class WebSocketFacade extends Endpoint {
 
     private Session session;
+
+    @Override
+    public void onOpen(Session session, EndpointConfig config) {
+
+    }
 
     public WebSocketFacade(String url, GameHandler handler) throws Exception {
         URI uri = new URI("ws://"+ url +"/ws");
@@ -35,7 +37,7 @@ public class WebSocketFacade {
                     handler.printError(error.getErrorMessage());
                 } else if (msg.getServerMessageType().equals(ServerMessage.ServerMessageType.NOTIFICATION)) {
                     NotificationMessage notification = gson.fromJson(message, NotificationMessage.class);
-                    handler.printError(notification.getMessage());
+                    handler.printNotification(notification.getMessage());
                 }
             }
         });
