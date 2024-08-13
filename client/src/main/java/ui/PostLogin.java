@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class PostLogin {
 
     private String auth;
-    private Map<Integer, GameData> games = new HashMap<>();
+    private Map<Integer, Integer> games = new HashMap<>();
 
     public PostLogin(String auth) {
         this.auth = auth;
@@ -74,7 +74,7 @@ public class PostLogin {
                 games.clear();
                 for (GameData game : result.games()) {
                     int num = games.size() + 1;
-                    games.put(num, game);
+                    games.put(num, game.gameID());
                     System.out.printf(num + ":" + game.gameName() +
                             ", Black player: " + game.blackUsername() +
                             ", White player: " + game.whiteUsername() + "%n");
@@ -116,7 +116,7 @@ public class PostLogin {
         scanner.nextLine();
         int gameID;
         if (games.containsKey(num)) {
-            gameID = games.get(num).gameID();
+            gameID = games.get(num);
         } else {
             System.out.println("Invalid game number");
             return;
@@ -138,7 +138,7 @@ public class PostLogin {
             JoinGameResult result = new ServerFacade(8080).joinGame(auth, color, gameID);
             if (result.message() == null) {
                 System.out.printf("Joined game %n");
-                new Gameplay().run(color, games.get(num));
+                new Gameplay().run(color, games.get(num), auth);
             } else {
                 new ChessClient().errorPrint(result.message());
             }
