@@ -112,14 +112,47 @@ public class Gameplay implements GameHandler {
         }
         if (board.getPiece(new ChessPosition(Integer.parseInt(row), Integer.parseInt(colum))).equals( ChessPiece.PieceType.PAWN)) {
             if (Integer.parseInt(destRow) == 1 && Integer.parseInt(destRow) == 8) {
-                try {
-                    webSocket.send(new MakeMoveCommand(auth, gameID, new ChessMove(new ChessPosition(Integer.parseInt(row),
-                            Integer.parseInt(colum)), new ChessPosition(Integer.parseInt(destRow),
-                            Integer.parseInt(destColum)), null)));
-                } catch (IOException e) {
-                    System.out.println("Error: failed to send move");
-                    return;
-                } //fixme
+                System.out.printf("Please enter piece to promote: %n >>> ");
+                String prom = scanner.nextLine();
+                if (prom == "knight")
+                {
+                    try {
+                        webSocket.send(new MakeMoveCommand(auth, gameID, new ChessMove(new ChessPosition(Integer.parseInt(row),
+                                Integer.parseInt(colum)), new ChessPosition(Integer.parseInt(destRow),
+                                Integer.parseInt(destColum)), ChessPiece.PieceType.KNIGHT)));
+                    } catch (IOException e) {
+                        System.out.println("Error: failed to send move");
+                        return;
+                    }
+                } else if (prom == "queen") {
+                    try {
+                        webSocket.send(new MakeMoveCommand(auth, gameID, new ChessMove(new ChessPosition(Integer.parseInt(row),
+                                Integer.parseInt(colum)), new ChessPosition(Integer.parseInt(destRow),
+                                Integer.parseInt(destColum)), ChessPiece.PieceType.QUEEN)));
+                    } catch (IOException e) {
+                        System.out.println("Error: failed to send move");
+                        return;
+                    }
+                } else if (prom == "rook") {
+                    try {
+                        webSocket.send(new MakeMoveCommand(auth, gameID, new ChessMove(new ChessPosition(Integer.parseInt(row),
+                                Integer.parseInt(colum)), new ChessPosition(Integer.parseInt(destRow),
+                                Integer.parseInt(destColum)), ChessPiece.PieceType.ROOK)));
+                    } catch (IOException e) {
+                        System.out.println("Error: failed to send move");
+                        return;
+                    }
+                } else if (prom == "bishop") {
+                    try {
+                        webSocket.send(new MakeMoveCommand(auth, gameID, new ChessMove(new ChessPosition(Integer.parseInt(row),
+                                Integer.parseInt(colum)), new ChessPosition(Integer.parseInt(destRow),
+                                Integer.parseInt(destColum)), ChessPiece.PieceType.BISHOP)));
+                    } catch (IOException e) {
+                        System.out.println("Error: failed to send move");
+                        return;
+                    }
+                }
+
             }
         } else {
             try {
