@@ -40,11 +40,6 @@ public class WebSocketHandler {
     public void onMessage(Session session, String message) throws Exception {
         Gson gson = new Gson();
         UserGameCommand gameCommand = gson.fromJson(message, UserGameCommand.class);
-        MakeMoveCommand moveCommand = new MakeMoveCommand(null, 1, new
-                ChessMove(new ChessPosition(1,1), new ChessPosition(1,1), ChessPiece.PieceType.PAWN));
-        if (gameCommand.getCommandType() == UserGameCommand.CommandType.MAKE_MOVE) {
-            moveCommand = gson.fromJson(message, MakeMoveCommand.class);
-        }
         AuthData auth = authDAO.getAuth(gameCommand.getAuthToken());
         GameData game = gameDAO.getGame(gameCommand.getGameID());
         if (auth != null) {
@@ -53,6 +48,7 @@ public class WebSocketHandler {
                     connect(auth.username(), game, session);
                 }
                 else if (gameCommand.getCommandType() == UserGameCommand.CommandType.MAKE_MOVE) {
+                    MakeMoveCommand moveCommand = gson.fromJson(message, MakeMoveCommand.class);
                     makeMove(auth.username(), game, session, moveCommand.getMove());
                 } else if (gameCommand.getCommandType() == UserGameCommand.CommandType.LEAVE) {
                     leave(auth.username(), game, session);
